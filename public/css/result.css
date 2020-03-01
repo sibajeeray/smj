@@ -1,0 +1,46 @@
+.result-bg{
+    background: radial-gradient(rgb(255, 255, 255), rgb(148, 190, 226))
+}
+
+
+
+@media screen and (min-width: 1600px) {
+    .page-height{
+        height: 100vh;
+    }
+  }
+
+  /* @media screen and (min-width: 1280px) and (max-width: 1600px) {
+    .page-height{
+        height: 120vh;
+    }  
+  } */
+
+.survey-submit{
+    padding-left: 600px;
+    padding-top: 50px;
+
+}
+.mysubmit{
+    color: #d1cf39;
+}
+
+  .result-main-bg{
+      background: radial-gradient(rgb(41, 135, 223), rgb(96, 136, 197));
+  }
+
+ol li{
+list-style:none;
+font-weight: 600;
+color: cornsilk;
+}
+
+.assessment{
+    color: white;
+}
+
+.tribe-detail{
+    /* position: absolute; */
+    padding-top: 10px;
+    padding-left: 600px;
+}

@@ -1,0 +1,40 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar2.ejs') %>
+    <div class="contents adminblock">
+        <div class="container page-height">
+            <h3 class="msg welcome">Admin Panel Login</h3>
+            <div class="container admindata">
+                <div class="row">
+                    <div class="col-md-7 login-image">
+
+                    </div>
+                    <div class="col-md-5">
+                            <% if (errorMessage) { %>
+                                <div class="user-message user-message--error"><%= errorMessage %></div>
+                            <% } %>
+                        <div class="form-container">
+                            <form action="/admin-validation" method="POST">
+                                <div class="field">
+                                    <label for="email"> email ID</label>
+                                    <input type="email" name="email" id="mail" required >
+                                </div>
+                                <div class="field">
+                                        <label for="password"> Password</label>
+                                        <input type="password" name="password" id="pwd" required >
+                                </div>
+                                <div class="button text-center">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="submit" value="Login">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('./includes/end.ejs') %>

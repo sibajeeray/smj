@@ -1,0 +1,51 @@
+<%- include('./includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/requirements.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="contents" id="requirements">
+         <div class=" background"> <!--page-height -->
+
+            
+
+            <div class="container">
+                    <% if (errorMessage) { %>
+                    <div class="user-message user-message--error text-center"><%= errorMessage %></div>
+                    <% } %>
+                <h6 class="welcome">
+                    Section 1. Requirements
+                </h6>
+
+                <div class="guide text-center">
+                    <h4>Please answer each question as it is displayed</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 image">
+                    </div>
+                    
+                    <div class="col-md-8 questionsbox">
+                       
+
+                        <form style="padding-bottom: 30px;" id="form1" action="/survey/requirements" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/surveys/requirement.js"></script>
+
+<%- include('./includes/end.ejs') %> 
+
+<% if(locals.showForm) { %>
+    <script>
+        var answers =  JSON.parse('<%- JSON.stringify(showForm) %>');   
+        fillTheForm(answers);
+    </script>
+    
+<% }%>

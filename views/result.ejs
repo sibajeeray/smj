@@ -1,0 +1,393 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/requirements.css">
+<link rel="stylesheet" href="/css/build.css">
+<link rel="stylesheet" href="/lib/chartjs/Chart.css">
+<link rel="stylesheet" href="/css/result.css">
+<script src="/lib/chartjs/Chart.js"></script>
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="contents" id="survey_result">
+        <div class="page-height result-main-bg">
+
+
+            <input type="hidden" name="tribedata" value="<%- businessname %>">            
+            <h1 class="welcome"> Your Assessment Result</h1>
+            <div class="col-md-7 survey-submit text-center">
+                <div class="btn-box text-center">
+                    <span class="btnn">                        
+                        <a href="/survey/send-result" id="example" class="btn btn-default btn-lg mysubmit font-weight-bold">
+                            >>> Click here to Send Results to mail
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="container">
+                <div class="headline">
+                    <h4 class="text-center assessment">Assessment Result for <%= tribename %></h4>
+                    <span class="tribe-detail">
+                        <p class="text-center tribe-detail">
+                            <ol>
+                                <li>Business Domain / Platform: <%- businessname  %></li>
+                                <li>Tribe/Tech area: <%= tribename %></li>
+                                <li>Squad/s under assessment: <%- squadname%></li>
+                                <li>Start Date: <%- startdate%></li>
+                                <li>Completion Date: <%- date%></li>
+                            </ol>
+                        </p>
+                    </span>
+                </div>
+                <div class="row result-bg">
+                    <div class="col-md-6 col-lg-3">
+                        <canvas id="requirements_chart" width="400" height="400"></canvas>
+
+                        <h4 class="chart-title text-center">Requirements Result</h4>
+                        <div class="donut-inner">
+                            <h6>Basic Requirements Score: <%=stats.requirements.requirements_basic.yes %>/7</h6>
+                            <h6>Inter Requirements Score: <%=stats.requirements.requirements_intermediate.yes %>/4</h6>
+                            <h6>Mature Requirements Score: <%=stats.requirements.requirements_mature.yes %>/3</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <canvas id="testing_chart" width="400" height="400"></canvas>
+                        <h4 class="chart-title text-center">Testing Result</h4>
+                        <div class="donut-inner">
+                            <h6>Basic Testing Score: <%=stats.testing.testing_basic.yes %>/10</h6>
+                            <h6>Inter Testing Score: <%=stats.testing.testing_intermediate.yes %>/6</h6>
+                            <h6>Mature Testing Score: <%=stats.testing.testing_mature.yes %>/7</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <canvas id="build_chart" width="400" height="400"></canvas>
+                        <h4 class="chart-title text-center">Build Result</h4>
+                        <div class="donut-inner">
+                            <h6>Basic Build Score: <%=stats.build.build_basic.yes %>/7</h6>
+                            <h6>Inter Build Score: <%=stats.build.build_intermediate.yes %>/5</h6>
+                            <h6>Mature Build Score: <%=stats.build.build_mature.yes %>/6</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <canvas id="deploy_chart" width="400" height="400"></canvas>
+                        <h4 class="chart-title text-center">Deploy Result</h4>
+                        <div class="donut-inner">
+                            <h6>Basic Deploy Score: <%=stats.deploy.deploy_basic.yes %>/6</h6>
+                            <h6>Inter Deploy Score: <%=stats.deploy.deploy_intermediate.yes %>/5</h6>
+                            <h6>Mature Deploy Score: <%=stats.deploy.deploy_mature.yes %>/6</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+
+
+            <script>
+                var ctx_requirements = document.getElementById('requirements_chart').getContext('2d');
+                var ctx_testing = document.getElementById('testing_chart').getContext('2d');
+                var ctx_build = document.getElementById('build_chart').getContext('2d');
+                var ctx_deploy = document.getElementById('deploy_chart').getContext('2d');
+
+                var requirements_basic_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_basic.no %>'));
+                var requirements_basic_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_basic.yes %>'));
+                var requirements_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_intermediate.no %>'));
+                var requirements_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_intermediate.yes %>'));
+                var requirements_mature_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_mature.no %>'));
+                var requirements_mature_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_mature.yes %>'));
+
+
+                var testing_basic_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_basic.no %>'));
+                var testing_basic_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_basic.yes %>'));
+                var testing_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_intermediate.no %>'));
+                var testing_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_intermediate.yes %>'));
+                var testing_mature_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_mature.no %>'));
+                var testing_mature_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_mature.yes %>'));
+
+
+                var build_basic_yes = JSON.parse(JSON.stringify('<%=stats.build.build_basic.no %>'));
+                var build_basic_yes = JSON.parse(JSON.stringify('<%=stats.build.build_basic.yes %>'));
+                var build_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.build.build_intermediate.no %>'));
+                var build_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.build.build_intermediate.yes %>'));
+                var build_mature_yes = JSON.parse(JSON.stringify('<%=stats.build.build_mature.no %>'));
+                var build_mature_yes = JSON.parse(JSON.stringify('<%=stats.build.build_mature.yes %>'));
+
+
+                var deploy_basic_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_basic.no %>'));
+                var deploy_basic_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_basic.yes %>'));
+                var deploy_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_intermediate.no %>'));
+                var deploy_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_intermediate.yes %>'));
+                var deploy_mature_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_mature.no %>'));
+                var deploy_mature_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_mature.yes %>'));
+
+                var background_basic = '';
+                if ((requirements_basic_yes / 7) < 0.5) {
+                    background_basic = '#eb1919';
+                }
+                else if (0.7 > (requirements_basic_yes / 7) > 0.5) {
+                    background_basic = '#e7a412';
+                }
+                else {
+                    background_basic = '#39e20f';
+                }
+
+                var background_intermediate = '';
+                if ((requirements_intermediate_yes / 4) < 0.5) {
+                    background_intermediate = '#eb1919';
+                }
+                else if (0.7 > (requirements_intermediate_yes / 4) > 0.5) {
+                    background_intermediate = '#e7a412';
+                }
+                else {
+                    background_intermediate = '#39e20f';
+                }
+
+                var background_mature = '';
+                if ((requirements_mature_yes / 3) < 0.5) {
+                    background_mature = '#eb1919';
+                }
+                else if (0.7 > (requirements_mature_yes / 3) > 0.5) {
+                    background_mature = '#e7a412';
+                }
+                else {
+                    background_mature = '#39e20f';
+                }
+
+                var reqData = {
+                    labels: [
+                        "BASIC",
+                        "INTERMEDIATE",
+                        "MATURE"
+                    ],
+                    datasets: [
+                        {
+                            label: "Competency",
+                            data: [requirements_basic_yes, requirements_intermediate_yes, requirements_mature_yes],
+                            backgroundColor: [background_basic, background_intermediate, background_mature],
+                            //hoverBackgroundColor: ["#4ebd32"," #e9bc5a",  "#cf2c2c"]
+                        }]
+                };
+
+                var background_testing_basic = '';
+
+                if ((testing_basic_yes / 10) < 0.5) {
+                    background_testing_basic = '#eb1919';
+                }
+                else if (0.7 > (testing_basic_yes / 10) > 0.5) {
+                    background_testing_basic = '#e7a412';
+                }
+                else {
+                    background_testing_basic = '#39e20f';
+                }
+
+                var background_testing_intermediate = '';
+
+                console.log((testing_intermediate_yes / 6));
+                if ((testing_intermediate_yes / 6) < 0.5) {
+                    background_testing_intermediate = '#eb1919';
+                }
+                else if (0.7 > (testing_intermediate_yes / 6) > 0.5) {
+                    background_testing_intermediate = '#e7a412';
+                }
+                else {
+                    background_testing_intermediate = '#39e20f';
+                }
+
+                var background_testing_mature = '';
+                if ((testing_mature_yes / 7) < 0.5) {
+                    background_testing_mature = '#eb1919';
+                }
+                else if (0.7 > (testing_mature_yes / 7) > 0.5) {
+                    background_testing_mature = '#e7a412';
+                }
+                else {
+                    background_testing_mature = '#39e20f';
+                }
+
+                var testData = {
+                    labels: [
+                        "BASIC",
+                        "INTERMEDIATE",
+                        "MATURE"
+                    ],
+                    datasets: [
+                        {
+                            label: "Competency",
+                            data: [testing_basic_yes, testing_intermediate_yes, testing_mature_yes],
+                            backgroundColor: [background_testing_basic, background_testing_intermediate, background_testing_mature],
+                            //hoverBackgroundColor: ["#4ebd32"," #e9bc5a",  "#cf2c2c"]
+                        }]
+                };
+
+                /* Design for Build Graph */
+
+                var background_build_basic = '';
+                if ((build_basic_yes / 7) < 0.5) {
+                    background_build_basic = '#eb1919';
+                }
+                else if (0.7 > (build_basic_yes / 7) > 0.5) {
+                    background_build_basic = '#e7a412';
+                }
+                else {
+                    background_build_basic = '#39e20f';
+                }
+
+                var background_build_intermediate = '';
+                if ((build_intermediate_yes / 5) < 0.5) {
+                    background_build_intermediate = '#eb1919';
+                }
+                else if (0.7 > (build_intermediate_yes / 5) > 0.5) {
+                    background_build_intermediate = '#e7a412';
+                }
+                else {
+                    background_build_intermediate = '#39e20f';
+                }
+
+                var background_build_mature = '';
+                if ((build_mature_yes / 6) < 0.5) {
+                    background_build_mature = '#eb1919';
+                }
+                else if (0.7 > (build_mature_yes / 6) > 0.5) {
+                    background_build_mature = '#e7a412';
+                }
+                else {
+                    background_build_mature = '#39e20f';
+                }
+
+                var buildData = {
+                    labels: [
+                        "BASIC",
+                        "INTERMEDIATE",
+                        "MATURE"
+                    ],
+                    datasets: [
+                        {
+                            label: "Competency",
+                            data: [build_basic_yes, build_intermediate_yes, build_mature_yes],
+                            backgroundColor: [background_build_basic, background_build_intermediate, background_build_mature],
+                            //hoverBackgroundColor: ["#4ebd32"," #e9bc5a",  "#cf2c2c"]
+                        }]
+                };
+
+                /* Design for Deploy Graph */
+
+                var background_deploy_basic = '';
+                if ((deploy_basic_yes / 6) < 0.5) {
+                    background_deploy_basic = '#eb1919';
+                }
+                else if (0.7 > (deploy_basic_yes / 6) > 0.5) {
+                    background_deploy_basic = '#e7a412';
+                }
+                else {
+                    background_deploy_basic = '#39e20f';
+                }
+
+                var background_deploy_intermediate = '';
+                if ((deploy_intermediate_yes / 5) < 0.5) {
+                    background_deploy_intermediate = '#eb1919';
+                }
+                else if (0.7 > (deploy_intermediate_yes / 5) > 0.5) {
+                    background_deploy_intermediate = '#e7a412';
+                }
+                else {
+                    background_deploy_intermediate = '#39e20f';
+                }
+
+                var background_deploy_mature = '';
+                if ((deploy_mature_yes / 6) < 0.5) {
+                    background_deploy_mature = '#eb1919';
+                }
+                else if (0.7 > (deploy_mature_yes / 6) > 0.5) {
+                    background_deploy_mature = '#e7a412';
+                }
+                else {
+                    background_deploy_mature = '#39e20f';
+                }
+
+                var depData = {
+                    labels: [
+                        "BASIC",
+                        "INTERMEDIATE",
+                        "MATURE"
+                    ],
+                    datasets: [
+                        {
+                            label: "Competency",
+                            data: [deploy_basic_yes, deploy_intermediate_yes, deploy_mature_yes],
+                            backgroundColor: [background_deploy_basic, background_deploy_intermediate, background_deploy_mature],
+                            //hoverBackgroundColor: ["#4ebd32"," #e9bc5a",  "#cf2c2c"]
+                        }]
+                };
+
+                new Chart(ctx_requirements, {
+                    type: 'pie',
+                    data: reqData,
+                    options: {
+
+                        // scales: {
+                        //     xAxes: [{
+                        //         type: category,
+                        //         labels: ['Basic','Intermediate','Mature']
+                        //     }]
+                        // }
+                    }
+                });
+                new Chart(ctx_testing, {
+                    type: 'pie',
+                    data: testData,
+                    options: {
+                        // scales: {
+                        //     xAxes: [{
+                        //         ticks: {
+                        //             beginAtZero: true
+                        //         }
+                        //     }]
+                        // }
+                    }
+                });
+                new Chart(ctx_build, {
+                    type: 'pie',
+                    data: buildData,
+                    options: {
+                        // scales: {
+                        //     xAxes: [{
+                        //         ticks: {
+                        //             beginAtZero: true
+                        //         }
+                        //     }]
+                        // }
+                    }
+                });
+                new Chart(ctx_deploy, {
+                    type: 'pie',
+                    data: depData,
+                    options: {
+                        // scales: {
+                        //     xAxes: [{
+                        //         ticks: {
+                        //             beginAtZero: true
+                        //         }
+                        //     }]
+                        // }
+                    }
+                });
+
+
+            </script>
+
+            <div class="col-md-7 survey-submit text-center">
+                <div class="btn-box text-center">
+                    <span class="btnn">
+                        
+                        <a>
+                            
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<%- include('./includes/end.ejs') %>

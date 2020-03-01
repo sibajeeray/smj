@@ -1,0 +1,414 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/requirements.css">
+<link rel="stylesheet" href="/css/testing.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="contents" id="requirements">
+        <div class="page-height background">
+
+            <div class="container">
+                <h6 class="questions heading">
+                    Section 2. Testing
+                </h6>
+                <div class="row">
+                    <div class="col-md-4 image">
+
+                    </div>
+                    
+                    <div class="col-md-8 questionsbox">
+                        <div class="guide text-center">
+                            <h4>Please answer all the questions below</h4>
+                        </div>
+
+                        <% if(comp ==='basic') { %>
+                            <form action="/survey/testing" method="post">
+                                <input type="hidden" name="comp" value= <%=comp %> >
+                                <div class="row">
+                                    <div class="col-md-10 questions">
+                                        <p class="data">
+                                            1. Has a Test Approach (Tribe) been completed & agreed with stakeholders?
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 value">
+                                        <select name="test1" id="none" required >
+                                            <option value=""> </option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                2. Is Regression automated at least 50%?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test2" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                3. Is Progression automated at least 30%?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test3" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                4. Do the number of linked tests reflect RRA for at least 40% of requirements?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test4" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                5. Is a TSR produced for all testing done?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test5" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                6. Is an orchestrator being used for CI?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test6" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                7. Does your customer contribute to Showcases?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test7" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                8. Is Test data masked / synthetic?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test8" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                9. Are all tests recorded/integrated in JIRA (issue type of Test)?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test9" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                10. Do all Requirements have tests linked?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test10" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="submit text-center">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="user" value="<%= user %>">
+                                    <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
+                                    <input type="submit" value="Proceed to Build Section >>">
+                                </div>
+
+                            </form>
+                        <% } %>
+                        
+                        <% if(comp ==='inter') { %>
+                            <form action="/survey/testing" method="post">
+                                <input type="hidden" name="comp" value= <%=comp %> >
+                                <div class="row">
+                                    <div class="col-md-10 questions">
+                                        <p class="data">
+                                            1. Was at least 60% of testing done in Sprints?
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 value">
+                                        <select name="test1" id="none" required >
+                                            <option value=""> </option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                2. Is Regression at least 85% automated?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test2" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                3. Is Progression at least 85% automated? 
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test3" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                4. Do the number of linked tests reflect RRA for more than 40% of requirements?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test4" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                5. Is a TSR at least 50% automated?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test5" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                6. Do you reuse tests?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test6" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="submit text-center">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="user" value="<%= user %>">
+                                    <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
+                                    <input type="submit" value="Proceed to Build Section >>">
+                                </div>
+
+                            </form>
+                        <% } %>
+                        
+                        <% if(comp ==='mature') { %>
+                            <form action="/survey/testing" method="post">
+                                <input type="hidden" name="comp" value= <%=comp %> >
+                                <div class="row">
+                                    <div class="col-md-10 questions">
+                                        <p class="data">
+                                            1. Was at least 80% of testing done in Sprints?
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 value">
+                                        <select name="test1" id="none" required >
+                                            <option value=""> </option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                2. Is Regression at least 90% automated?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test2" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                3. Is Progression at least 90% automated?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test3" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                4. Do the number of linked tests reflect RRA for at least 80% of requirements?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test4" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                5. Is the TSR fully automated?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test5" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                6. Is testing integrated with the CI Tool?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test6" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                7. Is the Customer a member of the Squad?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="test7" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>                            
+
+                                <div class="submit text-center">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="user" value="<%= user %>">
+                                    <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
+                                    <input type="submit" value="Proceed to Build Section >>">
+                                </div>
+
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./includes/end.ejs') %>

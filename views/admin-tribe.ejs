@@ -1,0 +1,174 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/tribe.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div id="tribe" class="contents">
+        <div class="container-fluid bg-image">
+
+            <div class="row">
+                <div class="col-md-6 form-contain left">
+                    <div class="title">
+                        <h5 class="tribe-head">
+                            Please provide us with details as below
+                        </h5>
+                        <% if (errorMessage) { %>
+                        <h6 class="user-message user-message--error"><%= errorMessage %></h6>
+                        <% } %>
+                        <form action="/tribe-result" method="post">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">1. Enter Business Domain / Platform</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select name="businessname" id="bname" required>
+                                        <option value=""></option>
+                                        <option value="94671">Australia Retail And Commercial</option>
+                                        <option value="94672">Banking Services</option>
+                                        <option value="94673">Business Automation And Integration</option>
+                                        <option value="94674">Customer Operations</option>
+                                        <option value="94675">Data Services</option>
+                                        <option value="94676">Employee Experience</option>
+                                        <option value="94677">Infrastructure As A Service</option>
+                                        <option value="94678">Institutional</option>
+                                        <option value="94679">New Zealand</option>
+                                        <option value="94680">Security</option>
+                                        <option value="94681">Technology Business Management</option>
+                                        <option value="94682">Technology Transformation</option>
+                                        <option value="94683">Wealth</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">1. Enter your Tribe name</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select name="tribename" id="tname" required>
+                                        <option value=""></option>
+                                        <option value="94712">Assurance COE</option>
+                                        <option value="94741">Assurance Compliance And Security</option>
+                                        <option value="94708">BAI Domain Exec</option>
+                                        <option value="94684">Banker Experience</option>
+                                        <option value="94748">Business Automation &amp; Integration</option>
+                                        <option value="94685">Business Lending</option>
+                                        <option value="94763">Business Operations</option>
+                                        <option value="94686">Business Owners</option>
+                                        <option value="94731">Cloud Services</option>
+                                        <option value="94732">Commodity Compute Services</option>
+                                        <option value="94749">Core Banking</option>
+                                        <option value="94687">Core Systems</option>
+                                        <option value="94723">Corporate Experience</option>
+                                        <option value="94713">Credit Cards And Personal Lending</option>
+                                        <option value="94688">Customer Authentication</option>
+                                        <option value="94689">Customer Contact</option>
+                                        <option value="94690">Customer Self Service</option>
+                                        <option value="94714">Customer Service Operations</option>
+                                        <option value="94758">Cyber Defence</option>
+                                        <option value="94750">Data &amp; Analytics</option>
+                                        <option value="94733">Data Centre Management Services</option>
+                                        <option value="94718">Data Ecosystem And Advanced Analytics</option>
+                                        <option value="94719">Data Lifecycle Evolution</option>
+                                        <option value="94720">Data Services - Customer</option>
+                                        <option value="94721">Data Services - Group</option>
+                                        <option value="94691">Deposits &amp; Wealth</option>
+                                        <option value="94715">Deposits And Wealth</option>
+                                        <option value="94692">Digital Customer Experience</option>
+                                        <option value="94742">Digital Data And Transaction Banking</option>
+                                        <option value="94693">Digital Sales Experience</option>
+                                        <option value="94709">Document And Knowledge Management</option>
+                                        <option value="94773">Edison</option>
+                                        <option value="94751">Employee Experience</option>
+                                        <option value="94724">Enablement</option>
+                                        <option value="94769">Engineering Acceleration</option>
+                                        <option value="94710">Enterprise Apis &amp; Integration Services</option>
+                                        <option value="94734">Enterprise Compute</option>
+                                        <option value="94764">Enterprise Continuity</option>
+                                        <option value="94722">Enterprise Data Platforms</option>
+                                        <option value="94765">Enterprise Enablement</option>
+                                        <option value="94725">Enterprise Mobility</option>
+                                        <option value="94726">Enterprise Mobility Tech Area</option>
+                                        <option value="94700">Enterprise Risk Technology Services</option>
+                                        <option value="94694">Everyday Banking</option>
+                                        <option value="94701">Financial Crime &amp; Retail Decisioning</option>
+                                        <option value="94743">Fixed Income-Derivatives-Currencies &amp; Market Risk
+                                        </option>
+                                        <option value="94744">Foreign Exchange Services</option>
+                                        <option value="94716">Fraud Collections And Workflow</option>
+                                        <option value="94695">Home Lending</option>
+                                        <option value="94696">Home Owners</option>
+                                        <option value="94735">Iaas Enablement Services</option>
+                                        <option value="94736">Iaas Platform Services</option>
+                                        <option value="94766">Identity Access Management</option>
+                                        <option value="94759">Information Protection</option>
+                                        <option value="94745">Institutional Support &amp; Tech Operations</option>
+                                        <option value="94774">Insurance Services</option>
+                                        <option value="94702">Integration Services</option>
+                                        <option value="94697">Marketing Aus COE</option>
+                                        <option value="94698">Net Promoter System COE</option>
+                                        <option value="94737">Network &amp; Storage Services</option>
+                                        <option value="94738">Network And Storage Services</option>
+                                        <option value="94770">New Ways Of Delivery - COE</option>
+                                        <option value="94752">New Zealand</option>
+                                        <option value="94771">NWOW @ Scale</option>
+                                        <option value="94753">NZ &amp; Pacific</option>
+                                        <option value="94754">Omni Channel Assisted</option>
+                                        <option value="94755">Omni Channel Customer Experience</option>
+                                        <option value="94703">Open Banking</option>
+                                        <option value="94767">Operational Tools &amp; Services</option>
+                                        <option value="94746">Operations Automation And Core Banking</option>
+                                        <option value="94704">Payments And Merchant Services</option>
+                                        <option value="94705">Payments And Transactions Services</option>
+                                        <option value="94756">Payments Wholesale Switching</option>
+                                        <option value="94739">Platform And Enablement Services</option>
+                                        <option value="94747">Regulatory And Compliance</option>
+                                        <option value="94699">Responsible Banking</option>
+                                        <option value="94706">Retail Credit Risk</option>
+                                        <option value="94760">Risk Management</option>
+                                        <option value="94761">Security In Change COE</option>
+                                        <option value="94717">Simplification COE</option>
+                                        <option value="94740">Strategic Initiatives</option>
+                                        <option value="94762">Strategy Influence And Policy</option>
+                                        <option value="94727">Support</option>
+                                        <option value="94768">TBM Office</option>
+                                        <option value="94728">Teaming</option>
+                                        <option value="94757">Tech Operations</option>
+                                        <option value="94729">Testing Services</option>
+                                        <option value="94772">Transform And Operate</option>
+                                        <option value="94775">Wealth</option>
+                                        <option value="94707">Wholesale Group Risk</option>
+                                        <option value="94711">Workflow And Automation</option>
+                                        <option value="94730">Workplace</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">2. Enter your Squad name</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="squadname" id="sname" required>
+                                </div>
+                            </div>
+
+                            <div class="row submit text-center">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <input type="hidden" name="user" value="<%= user %>">
+                                <input type="submit" value="View Assessment Results >>" class="submit-btn">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col md-6 right">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <%- include('./includes/end.ejs') %>

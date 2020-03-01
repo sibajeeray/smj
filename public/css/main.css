@@ -1,0 +1,331 @@
+html {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  
+}
+body {
+    padding: 0;
+    margin: 0;
+    background: #f2f6e9;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+/* .page-height {
+  height: 100vh;
+}
+
+.page-height-about{
+  height: 800px;
+} */
+  /*--- navigation bar ---*/
+  .navbar {
+    background:#78bfeb;
+    padding: 0;
+    height: 70px;
+  }
+  .nav-link,
+  .navbar-brand {
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+  }
+  .navbar .nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .navbar .nav-link.active {
+    color: rgb(2, 112, 167);
+  }
+  .nav-link {
+    margin-right: 1em !important;
+  }
+  .nav-link:hover {
+    color: #000;
+  }
+  .navbar-collapse {
+    justify-content: flex-end;
+  }
+  .logo-img {
+    max-height: 50px;
+    margin: 10px;
+  }
+  @media only screen and (min-width: 1600px){
+    .smj-image {
+      z-index: 2000;
+      width: 500px;
+      height: 1100px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1200x){
+    .smj-image {
+      z-index: 2000;
+      width: 500px;
+      height: 1200px;
+    }
+  }
+
+  @media only screen and (min-width: 768px){
+    .col-md-5{
+      width: 500px;
+    }
+  }
+
+  
+
+  @media only screen and (min-width: 768px){
+    .logo-img {
+      margin-top: 0px;
+    }
+  }
+
+  
+
+  @media screen and (min-width: 1600px) {
+    #home .background {
+      background: linear-gradient(#dee3e4, #3873e2);
+      height: 70vh;
+    }
+  }
+
+  #home {
+    background: linear-gradient(#dee3e4, #3873e2);
+    height: 100%;
+  } 
+  .foot {
+    position: relative;
+    width: 100%;
+    display: block;
+    bottom: 0;
+    left: 0;
+    background-color: #7c7878;
+  }
+
+
+  .text-color{
+    color: #e9d2e9;
+  }
+
+  #home .mysubmit {
+    background-color: #ddd;
+    float: right;  
+  }
+  #home .details {
+    padding-top: 0px;
+  }
+  #home .survey-submit {
+    height: 300px;
+  }
+
+  .smj-image{
+    background-image: url('../images/qes.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1200;
+}
+
+#home .btn-box {
+  position: relative;
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+#home .btn-box .btnn {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+  .welcome{
+    color: rgb(2, 112, 167);
+    padding: 20px 20px 5px 20px;
+    font-family: serif;
+  }
+
+  .index{
+    position: relative;
+    z-index: 2222;
+  }
+  .about{
+    color: #0f0202;
+    text-align: center;
+    opacity: 1;
+    font-weight: bold;
+  }
+
+  .main-content{
+    text-align: center;
+    width: 100%;
+  }
+
+  .mybutton{
+    display: inline-block;
+    position: relative;
+    text-align:center;
+    width:100%;
+    opacity: 1;  
+}
+
+.mysubmit{
+  color: #0a490a; 
+}
+
+.demo{
+  font-weight: bold;
+}
+
+.mysubmit:hover{
+  background-color: aquamarine;
+  opacity: 1;
+}
+
+.foot {
+  position: scroll;
+  width: 100%;
+  display: block;
+  bottom: 0;
+  left: 0;
+  background-color: #7c7878;
+}
+.foot p {
+  color: #161414;
+  font-weight: bold;
+  padding: 10px 0;
+  margin: 0;
+}
+
+#mainnavigation.show {
+  z-index: 100;
+}
+#mainnavigation.show ul {
+  width: 100%;
+  background-color: #3d3d3d;
+}
+#mainnavigation.show ul li {
+  text-align: center;
+  padding: 5px 0;
+  color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+#mainnavigation.show ul li:last-child {
+  border-bottom: none;
+}
+
+.user-message--error{
+  color: #da1414;
+}
+
+.reset-email{
+  color: rgb(29, 3, 3);
+  padding: 10px 0;
+  margin: 0;
+}
+
+.reset-head{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.btn-position{
+  text-align: center;
+}
+
+.logout-style{
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+
+.after-login{
+  margin-top: 8px;
+  margin-left: -20px;
+  margin-right: -15px;
+}
+.welcome-user{
+  font-weight: bolder;
+  color: #1b131b;
+}
+
+.brand-line-2{
+  position: relative;
+  background: #063b50;
+  height: 150px;
+  display: table;
+  width: 100%;
+}
+.brand-line-2 span {
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+.brand-line-2 span img {
+  max-height: 100px;
+  text-align: center !important;
+  display: inline-block;
+}
+#log_form #wrapper {
+  width: 100%;
+  min-height: 200px;
+}
+#log_form #login, #log_form #register  {
+  width: 100%
+}
+
+.about-line{
+  background: transparent;
+  font-weight: 500;
+  font-size: 14.5px;
+  text-align: left;
+}
+.about-smj{
+  padding-top: 34px;
+}
+
+.about-line-authenticated{
+  background: transparent;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+}
+
+.user-message--success{
+  background: rgb(148, 209, 148);
+  padding: 10px;
+  text-align: center;
+}
+
+.user-message--errormain{
+  background: rgb(206, 151, 134);
+  padding: 10px;
+  text-align: center;
+}
+
+.nav-item{
+  padding-left: 10px;
+}
+.survey-time h5 {
+  font-weight: 700;
+  color: #063b50;
+}
+.for-smj .smj-logo .logo-smj{
+  min-height: 400px;
+}
+
+.smj-text{
+  color: #1571c7;
+  font-size: 40px;
+  font-weight: bolder;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/* .for-smj{
+  height: 700px;
+} */
+
+.about-time{
+  padding-top: 10px;
+  padding-bottom: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+}

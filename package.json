@@ -1,0 +1,37 @@
+{
+  "name": "sushant-smj",
+  "version": "1.0.0",
+  "description": "SMJ2.0",
+  "msin": "main.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sushant",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "chart.js": "^2.9.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^2.2.0",
+    "csurf": "^1.10.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.2.0",
+    "mongoose": "^5.7.6",
+    "mongoose-dynamic-schemas": "^1.2.6",
+    "node-mailjet": "^3.3.1",
+    "nodejs-nodemailer-outlook": "^1.2.1",
+    "nodemailer": "^6.3.1",
+    "nodemon": "^1.19.2",
+    "path": "^0.12.7",
+    "plotly": "^1.0.6",
+    "pug": "^2.0.4",
+    "puppeteer": "^2.0.0",
+    "sendgrid": "^5.2.3"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,33 @@
+<%- include('./includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+
+    <div id="home" class="contents">
+            <div class="container-fluid page-height">
+                <div>
+                    <div>
+                        <h6 class="text-center reset-head">Please enter your mail id</h6>
+                    </div>
+                    <main>
+                        <% if (errorMessage) { %>
+                        <div class="user-message user-message--error text-center"><%= errorMessage %></div>
+                        <% } %>
+                        <form class="login-form" action="/reset" method="POST">
+                            <div class="reset-email text-center">
+                                <label for="email">E-Mail</label>
+                                <input type="email" name="email" id="email">
+                            </div>
+                            <div class="text-center">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn btn-position" type="submit">Reset Password</button>
+                            </div>                        
+                        </form>
+                    </main>
+            
+                </div>
+            </div>
+    </div>
+    
+<%- include('./includes/end.ejs') %>

@@ -1,0 +1,121 @@
+.data input{
+    background-color: #fff;
+    float: right;
+    width:70%;
+    
+    
+}
+
+.data label{
+    height: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #212179;
+}
+
+.data2 label{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #212179;
+}
+
+.data2 input{
+    background-color: #fff;
+    float: right;
+    width:25%;
+    margin-top: 20px;
+    margin-right: 45%;
+    /* height: 2px; */
+}
+
+.competency{
+    color: #212179;
+    font-weight: bold;
+    margin-top: 80px;
+    font-size: 17px;
+}
+
+.data3 label{
+    height: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold; 
+    color: #212179;
+}
+.col-sm-6.data3{
+    margin-bottom: 10px;
+}
+
+.data3 label select{
+    height: 20px;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold; 
+    color: #212179; */
+    width: 50%;
+    margin-right: 30%;
+}
+
+.submit input{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold; 
+    background-color: #a6d4f3;
+    border-style: solid;
+}
+
+.submit input:hover{
+    background-color: #a48ef3;
+}
+
+
+#tribe .container-fluid,#tribe .row, #tribe .col-md-6 {
+    height: 100%;
+}
+#tribe .title {
+    padding: 40px 0;
+    color: #000003;
+    z-index: 1000;
+    text-align: left;
+    
+}
+#tribe .title .tribe-head {
+    padding-bottom: 30px;
+}
+
+#tribe{
+    background: #0195D1;
+}
+
+#tribe label {
+    color: #eaedf1;
+    z-index: 1000;
+    font-size: 16px;
+    font-weight: 500;
+}
+#tribe form div.row {
+    padding-bottom: 15px
+}
+#tribe form input, #tribe form select {
+    width: 100%;
+    height: 22px;
+}
+
+#tribe form input#doc{
+    height: 30px;
+}
+#tribe form .row.submit {
+    padding-top: 40px;
+    display: block;
+}
+#tribe form .row.submit .submit-btn {
+    text-align: center;
+    height: 30px;
+    width: 200px;
+}
+.user-message--error{
+    color: red;
+}

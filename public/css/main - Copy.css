@@ -1,0 +1,400 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: #f2f6e9;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+/* .page-height {
+  height: 100vh;
+}
+
+.page-height-about{
+  height: 800px;
+} */
+  /*--- navigation bar ---*/
+  .navbar {
+    background:#78bfeb;
+    padding: 0;
+    height: 60px;
+  }
+  .nav-link,
+  .navbar-brand {
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+  }
+  .nav-link {
+    margin-right: 1em !important;
+  }
+  .nav-link:hover {
+    color: #000;
+  }
+  .navbar-collapse {
+    justify-content: flex-end;
+  }
+  .logo-img {
+    max-height: 80px;
+    margin-top: -10px;
+  }
+  @media only screen and (min-width: 1600px){
+    .smj-image {
+      z-index: 2000;
+      width: 500px;
+      height: 1100px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1200x){
+    .smj-image {
+      z-index: 2000;
+      width: 500px;
+      height: 1200px;
+    }
+  }
+
+  @media only screen and (min-width: 768px){
+    .col-md-5{
+      width: 500px;
+    }
+  }
+
+  
+
+  @media only screen and (min-width: 768px){
+    .logo-img {
+      margin-top: 0px;
+    }
+  }
+
+  
+
+  @media screen and (min-width: 1600px) {
+    #home .background {
+      background: linear-gradient(#dee3e4, #3873e2);
+      height: 70vh;
+    }
+  }
+
+  @media screen and (min-width: 1280px) and (max-width: 1600px) {
+    #home .background {
+      background: linear-gradient(#dee3e4, #3873e2);
+      height: 50vh;
+    } 
+  }
+
+  @media screen and (min-width: 1280px) and (max-width: 1600px) {
+    .foot {
+      position: fixed;
+      width: 100%;
+      display: block;
+      bottom: 0;
+      left: 0;
+      background-color: #7c7878;
+    }
+  }
+
+  .text-color{
+    color: #e9d2e9;
+  }
+  /* #home .background::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+  } */
+  #home .mysubmit {
+    background-color: #ddd;
+    float: right;  
+  }
+  #home .details {
+    padding-top: 0px;
+  }
+  #home .survey-submit {
+    height: 300px;
+  }
+
+  .smj-image{
+    background-image: url('../images/qes.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1200;
+}
+
+#home .btn-box {
+  position: relative;
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+#home .btn-box .btnn {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+  .welcome{
+    color: white;
+    text-align: center;
+    padding: 10px 10px ;
+    font-family: monospace;
+    background: linear-gradient(#063b50,#00709E);
+    width: 110%;
+    margin-left: -30px;
+  }
+
+  .index{
+    position: relative;
+    z-index: 2222;
+  }
+  .about{
+    color: #0f0202;
+    text-align: center;
+    opacity: 1;
+    font-weight: bold;
+  }
+
+  .main-content{
+    text-align: center;
+    width: 100%;
+  }
+
+  .mybutton{
+    display: inline-block;
+    position: relative;
+    text-align:center;
+    width:100%;
+    opacity: 1;  
+}
+
+.mysubmit{
+  color: #0a490a; 
+}
+
+.demo{
+  font-weight: bold;
+}
+
+.mysubmit:hover{
+  background-color: aquamarine;
+  opacity: 1;
+}
+
+.foot {
+  position: scroll;
+  width: 100%;
+  display: block;
+  bottom: 0;
+  left: 0;
+  background-color: #7c7878;
+}
+.foot p {
+  color: #161414;
+  font-weight: bold;
+  padding: 10px 0;
+  margin: 0;
+}
+
+#mainnavigation.show {
+  z-index: 100;
+}
+#mainnavigation.show ul {
+  width: 100%;
+  background-color: #3d3d3d;
+}
+#mainnavigation.show ul li {
+  text-align: center;
+  padding: 5px 0;
+  color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+#mainnavigation.show ul li:last-child {
+  border-bottom: none;
+}
+
+.user-message--error{
+  color: #da1414;
+}
+
+.reset-email{
+  color: rgb(29, 3, 3);
+  padding: 10px 0;
+  margin: 0;
+}
+
+.reset-head{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.btn-position{
+  text-align: center;
+}
+
+/* .brand-line-1{
+  background: #00709E;
+  position: absolute;
+  height: 400px; 
+  right: -1px;
+  bottom: -10px;
+  left: -1px;
+  transform: rotate(.8deg);
+  -moz-transform: rotate(.8deg);
+  -webkit-transform: rotate(.8deg);
+  -o-transform: rotate(.8deg);
+  -ms-transform: rotate(.8deg);
+}
+
+.brand-line-2{
+  position: absolute;
+  background: #063b50;
+  height: 350px ;
+  right: -5px;
+  bottom: -40px;
+  left: -2px;
+  transform: rotate(-1.9deg);
+  -moz-transform: rotate(-1.9deg);
+  -webkit-transform: rotate(-1.9deg);
+  -o-transform: rotate(-1.9deg);
+  -ms-transform: rotate(-1.9deg);
+}
+
+.brand-logo {
+  position: absolute;
+  height: 400px; 
+  width: 450px; 
+  bottom: 15px;
+  right: 3px;
+  background-image: url(../images/anz-logo-navbar.png);
+  background-repeat: no-repeat;
+} */
+
+.logout-style{
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+
+.after-login{
+  margin-top: 8px;
+  margin-left: -20px;
+  margin-right: -15px;
+}
+.welcome-user{
+  font-weight: bolder;
+  color: #1b131b;
+}
+
+@media screen and (min-width: 1600px) {
+  .brand-line-1{
+    background: #00709E;
+    position: absolute;
+    height: 260px; /*400px */
+    right: -1px;
+    bottom: -10px;
+    left: -1px;
+    transform: rotate(.8deg);
+    -moz-transform: rotate(.8deg);
+    -webkit-transform: rotate(.8deg);
+    -o-transform: rotate(.8deg);
+    -ms-transform: rotate(.8deg);
+  }
+  
+  .brand-line-2{
+    position: absolute;
+    background: #063b50;
+    height: 230px ; /*350px */
+    right: -5px;
+    bottom: -35px;
+    left: -2px;
+    transform: rotate(-1.9deg);
+    -moz-transform: rotate(-1.9deg);
+    -webkit-transform: rotate(-1.9deg);
+    -o-transform: rotate(-1.9deg);
+    -ms-transform: rotate(-1.9deg);
+  }
+  
+  .brand-logo {
+    position: absolute;
+    height: 340px; /*400px */
+    width: 450px; /*450px */
+    bottom: 15px;
+    right: 3px;
+    background-image: url(../images/anz-logo-navbar.png);
+    background-repeat: no-repeat;
+    /* background: url(../images/anz-png-brand-logo.png) no-repeat center center;  */
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1600px) {
+  .brand-line-1{
+    background: #00709E;
+    position: absolute;
+    height: 200px; /*400px */
+    right: -1px;
+    bottom: -490px;
+    left: -1px;
+    transform: rotate(.8deg);
+    -moz-transform: rotate(.8deg);
+    -webkit-transform: rotate(.8deg);
+    -o-transform: rotate(.8deg);
+    -ms-transform: rotate(.8deg);
+  }
+  
+  .brand-line-2{
+    position: absolute;
+    background: #063b50;
+    height: 150px ; /*350px */
+    right: -5px;
+    bottom: -520px;
+    left: -2px;
+    transform: rotate(-1.9deg);
+    -moz-transform: rotate(-1.9deg);
+    -webkit-transform: rotate(-1.9deg);
+    -o-transform: rotate(-1.9deg);
+    -ms-transform: rotate(-1.9deg);
+  }
+  
+  .brand-logo {
+    position: absolute;
+    height: 400px; /*400px */
+    width: 450px; /*450px */
+    bottom: -620px;
+    right: 3px;
+    background-image: url(../images/anz-logo-navbar.png);
+    background-repeat: no-repeat;
+    /* background: url(../images/anz-png-brand-logo.png) no-repeat center center;  */
+  }
+}
+
+.about-line{
+
+  /* font-style: oblique; */
+  background: transparent;
+  font-weight: 500;
+  font-size: 14.5px;
+  text-align: left;
+}
+.about-smj{
+  padding-top: 34px;
+}
+
+.about-line-authenticated{
+  background: transparent;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+}
+
+.user-message--sucess{
+  background: rgb(148, 209, 148);
+  padding: 10px;
+  text-align: center;
+}
+
+.nav-item{
+  padding-left: 10px;
+}

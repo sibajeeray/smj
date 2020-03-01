@@ -1,0 +1,322 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/requirements.css">
+<link rel="stylesheet" href="/css/deploy.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="contents" id="requirements">
+        <div class="page-height background">
+            <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
+            <div class="container">
+                <h6 class="questions heading">
+                    Section 4. Deploy
+                </h6>
+                <div class="row">
+                    <div class="col-md-4 image">
+                        <input type="hidden" name="user" value="<%= user %>">
+                    </div>
+                    <div class="col-md-8 questionsbox">
+                        <div class="guide text-center">
+                            <h4>Please answer all the questions below</h4>
+                        </div>
+                        <% if(comp ==='basic') { %>
+                            <form action="/survey/deploy" method="post">
+                                <input type="hidden" name="comp" value= <%=comp %> >
+                                <div class="row">
+                                    <div class="col-md-10 questions">
+                                        <p class="data">
+                                            1. Is the frequency of Production deployments < 3 months?
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 value">
+                                        <select name="dep1" id="none" required >
+                                            <option value=""> </option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                2. Is Deployment automated at least 30%?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep2" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                3. Is the % of successful Deployments > 30%?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep3" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                4. Is TVT automated and triggered from deployment at least 30% ?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep4" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                5. Is BVT automated and triggered from deployment at least 30% ?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep5" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                6. Does the average deployment time for your platform meet industry standards?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep6" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="submit text-center">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="user" value="<%= user %>">
+                                    <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
+                                    <input type="submit" value="Submit my assessment >>>">
+                                </div>
+
+                            </form>
+                        <% } %>
+                        
+                        <% if(comp ==='inter') { %>
+                            <form action="/survey/deploy" method="post">
+                                <input type="hidden" name="comp" value= <%=comp %> >
+                                <div class="row">
+                                    <div class="col-md-10 questions">
+                                        <p class="data">
+                                            1. Is the frequency of Production deployments < 8 weeks?
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 value">
+                                        <select name="dep1" id="none" required >
+                                            <option value=""> </option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                2. Is Deployment automated more than 30%?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep2" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                3. Is the % of successful Deployments > 60%?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep3" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                4. Is TVT automated and triggered from deployment at least 60% ?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep4" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                5. Is BVT automated and triggered from deployment at least 50% ?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep5" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>                            
+
+                                <div class="submit text-center">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="user" value="<%= user %>">
+                                    <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
+                                    <input type="submit" value="Submit my assessment >>>">
+                                </div>
+
+                            </form>
+                        <% } %>
+
+                        <% if(comp ==='mature') { %>
+                            <form action="/survey/deploy" method="post">
+                                <input type="hidden" name="comp" value= <%=comp %> >
+                                <div class="row">
+                                    <div class="col-md-10 questions">
+                                        <p class="data">
+                                            1. Is the frequency of Production deployments < 4 weeks?
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2 value">
+                                        <select name="dep1" id="none" required >
+                                            <option value=""> </option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                2. Is Deployment automated at least 90%?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep2" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                3. Is the % of successful Deployments > 90%?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep3" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                4. Is TVT automated and triggered from deployment at least 90% ?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep4" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                5. Is BVT automated and triggered from deployment at least 70% ?
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep5" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-10 questions">
+                                            <p class="data">
+                                                6. Does the average deployment time for your platform exceed industry standards? 
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2 value">
+                                            <select name="dep6" id="none" required >
+                                                <option value=""> </option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="submit text-center">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="user" value="<%= user %>">
+                                    <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
+                                    <input type="submit" value="Submit my assessment >>>">
+                                </div>
+
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./includes/end.ejs') %>

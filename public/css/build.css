@@ -1,0 +1,18 @@
+.image{
+    background-image: url('../images/build-img.png');
+    background-size: contain;
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+#build form select {
+    width: 100%;
+}
+#build form p {
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+#build form div.submit {
+    padding: 40px 0;
+}

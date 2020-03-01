@@ -1,0 +1,19 @@
+.thanku{
+    color: #35500f;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 10%;
+    /* transform: scale(8);
+    transition: all 0.3s ease-in-out 0.2s; */
+}
+
+.background{
+    background: linear-gradient(white, rgb(100, 173, 241));
+    height: 100vh;
+}
+
+.result{
+    padding-top: 50px;
+    text-align: center;
+}

@@ -1,0 +1,212 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/tribe.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div id="tribe" class="contents">
+        <div class="container-fluid bg-image">
+                <h1 class="welcome"> Please enter the following details </h1>
+            <div class="row">
+                <div class="col-md-6 form-contain left">
+                    <div class="title">
+                        <h5 class="tribe-head">
+                            Please enter the following details. All fields are mandatory.
+                        </h5>
+                        <% if (errorMessage) { %>
+                        <h6 class="user-message user-message--error"><%= errorMessage %></h6>
+                        <% } %>
+                        <form action="/tribe" method="post">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">1. Business Domain / Platform *</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select name="businessname" id="bname" required>
+                                        <option value=""></option>
+                                        <option value="Australia Retail And Commercial">Australia Retail And Commercial</option>
+                                        <option value="Banking Services">Banking Services</option>
+                                        <option value="Business Automation And Integration">Business Automation And Integration</option>
+                                        <option value="Customer Operations">Customer Operations</option>
+                                        <option value="Data Services">Data Services</option>
+                                        <option value="Employee Experience">Employee Experience</option>
+                                        <option value="Infrastructure As A Service">Infrastructure As A Service</option>
+                                        <option value="Institutional">Institutional</option>
+                                        <option value="New Zealand">New Zealand</option>
+                                        <option value="Security">Security</option>
+                                        <option value="Technology Business Management">Technology Business Management</option>
+                                        <option value="Technology Transformation">Technology Transformation</option>
+                                        <option value="Wealth">Wealth</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">2. Tribe/Tech area *</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select name="tribename" id="tname" required>
+                                        <option value=""></option>
+                                        <option value="Assurance COE">Assurance COE</option>
+                                        <option value="Assurance Compliance And Security">Assurance Compliance And Security</option>
+                                        <option value="BAI Domain Exec">BAI Domain Exec</option>
+                                        <option value="Banker Experience">Banker Experience</option>
+                                        <option value="Business Automation & Integration">Business Automation & Integration</option>
+                                        <option value="Business Lending">Business Lending</option>
+                                        <option value="Business Operations">Business Operations</option>
+                                        <option value="Business Owners">Business Owners</option>
+                                        <option value="Cloud SerBusiness Ownersvices">Cloud SerBusiness Ownersvices</option>
+                                        <option value="Commodity Compute Services">Commodity Compute Services</option>
+                                        <option value="Core Banking">Core Banking</option>
+                                        <option value="Core Systems">Core Systems</option>
+                                        <option value="Corporate Experience">Corporate Experience</option>
+                                        <option value="Credit Cards And Personal Lending">Credit Cards And Personal Lending</option>
+                                        <option value="Customer Authentication">Customer Authentication</option>
+                                        <option value="Customer Contact">Customer Contact</option>
+                                        <option value="Customer Self Service">Customer Self Service</option>
+                                        <option value="Customer Service Operations">Customer Service Operations</option>
+                                        <option value="Cyber Defence">Cyber Defence</option>
+                                        <option value="Data & Analytics">Data & Analytics</option>
+                                        <option value="Data Centre Management Services">Data Centre Management Services</option>
+                                        <option value="Data Ecosystem And Advanced Analytics">Data Ecosystem And Advanced Analytics</option>
+                                        <option value="Data Lifecycle Evolution">Data Lifecycle Evolution</option>
+                                        <option value="Data Services - Customer">Data Services - Customer</option>
+                                        <option value="Data Services - Group">Data Services - Group</option>
+                                        <option value="Deposits & Wealth">Deposits & Wealth</option>
+                                        <option value="Deposits And Wealth">Deposits And Wealth</option>
+                                        <option value="Digital Customer Experience">Digital Customer Experience</option>
+                                        <option value="Digital Data And Transaction Banking">Digital Data And Transaction Banking</option>
+                                        <option value="Digital Sales Experience">Digital Sales Experience</option>
+                                        <option value="Document And Knowledge Management">Document And Knowledge Management</option>
+                                        <option value="Edison">Edison</option>
+                                        <option value="Employee Experience">Employee Experience</option>
+                                        <option value="Enablement">Enablement</option>
+                                        <option value="Engineering Acceleration">Engineering Acceleration</option>
+                                        <option value="Enterprise Apis & Integration Services">Enterprise Apis & Integration Services</option>
+                                        <option value="Enterprise Compute">Enterprise Compute</option>
+                                        <option value="Enterprise Continuity">Enterprise Continuity</option>
+                                        <option value="Enterprise Data Platforms">Enterprise Data Platforms</option>
+                                        <option value="Enterprise Enablement">Enterprise Enablement</option>
+                                        <option value="Enterprise Mobility">Enterprise Mobility</option>
+                                        <option value="Enterprise Mobility Tech Area">Enterprise Mobility Tech Area</option>
+                                        <option value="Enterprise Risk Technology Services">Enterprise Risk Technology Services</option>
+                                        <option value="Everyday Banking">Everyday Banking</option>
+                                        <option value="Financial Crime & Retail Decisioning">Financial Crime & Retail Decisioning</option>
+                                        <option value="Fixed Income-Derivatives-Currencies & Market Risk">Fixed Income-Derivatives-Currencies & Market Risk
+                                        </option>
+                                        <option value="Foreign Exchange Services">Foreign Exchange Services</option>
+                                        <option value="Fraud Collections And Workflow">Fraud Collections And Workflow</option>
+                                        <option value="Home Lending">Home Lending</option>
+                                        <option value="Home Owners">Home Owners</option>
+                                        <option value="Iaas Enablement Services">Iaas Enablement Services</option>
+                                        <option value="Iaas Platform Services">Iaas Platform Services</option>
+                                        <option value="Identity Access Management">Identity Access Management</option>
+                                        <option value="Information Protection">Information Protection</option>
+                                        <option value="Institutional Support & Tech Operations">Institutional Support & Tech Operations</option>
+                                        <option value="Insurance Services">Insurance Services</option>
+                                        <option value="Integration Services">Integration Services</option>
+                                        <option value="Marketing Aus COE">Marketing Aus COE</option>
+                                        <option value="Net Promoter System COE">Net Promoter System COE</option>
+                                        <option value="Network & Storage Services">Network & Storage Services</option>
+                                        <option value="Network And Storage Services">Network And Storage Services</option>
+                                        <option value="New Ways Of Delivery - COE">New Ways Of Delivery - COE</option>
+                                        <option value="New Zealand">New Zealand</option>
+                                        <option value="NWOW @ Scale">NWOW @ Scale</option>
+                                        <option value="NZ & Pacific">NZ & Pacific</option>
+                                        <option value="Omni Channel Assisted">Omni Channel Assisted</option>
+                                        <option value="Omni Channel Customer Experience">Omni Channel Customer Experience</option>
+                                        <option value="Open Banking">Open Banking</option>
+                                        <option value="Operational Tools & Services">Operational Tools & Services</option>
+                                        <option value="Operations Automation And Core Banking">Operations Automation And Core Banking</option>
+                                        <option value="Payments And Merchant Services">Payments And Merchant Services</option>
+                                        <option value="Payments And Transactions Services">Payments And Transactions Services</option>
+                                        <option value="Payments Wholesale Switching">Payments Wholesale Switching</option>
+                                        <option value="Platform And Enablement Services">Platform And Enablement Services</option>
+                                        <option value="Regulatory And Compliance">Regulatory And Compliance</option>
+                                        <option value="Responsible Banking">Responsible Banking</option>
+                                        <option value="Retail Credit Risk">Retail Credit Risk</option>
+                                        <option value="Risk Management">Risk Management</option>
+                                        <option value="Security In Change COE">Security In Change COE</option>
+                                        <option value="Simplification COE">Simplification COE</option>
+                                        <option value="Strategic Initiatives">Strategic Initiatives</option>
+                                        <option value="Strategy Influence And Policy">Strategy Influence And Policy</option>
+                                        <option value="Support">Support</option>
+                                        <option value="TBM Office">TBM Office</option>
+                                        <option value="Teaming">Teaming</option>
+                                        <option value="Tech Operations">Tech Operations</option>
+                                        <option value="Testing Services">Testing Services</option>
+                                        <option value="Transform And Operate">Transform And Operate</option>
+                                        <option value="Wealth">Wealth</option>
+                                        <option value="Wholesale Group Risk">Wholesale Group Risk</option>
+                                        <option value="Workflow And Automation">Workflow And Automation</option>
+                                        <option value="Workplace">Workplace</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">3. Squad/s under assessment *</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="squadname" id="sname" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">4. Your Name *</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="personname" id="pname" required value="<%- user %>">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">5. Start Date *</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="date" name="cdate" id="doc" class="form-control" required>
+                                </div>
+                                <script src="/js/date.js"></script>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">6. TAL/Domain Lead name *</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="talname" id="talname" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="">7. TPL/ Portfolio Lead name *</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="tplname" id="tplname" required>
+                                </div>
+                            </div>
+
+                            <div class="row submit text-center">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <input type="hidden" name="user" value="<%= user %>">
+                                <input type="submit" value="Start Assessment >>" class="submit-btn">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col md-6 right">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <%- include('./includes/end.ejs') %>

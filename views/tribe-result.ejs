@@ -1,0 +1,63 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/tribe.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div id="tribe" class="contents">
+        <div class="container-fluid bg-image">
+            <div class="row">
+                <div class="col-md-6 form-contain left">
+                    <div class="title">
+                        <h5 class="tribe-head">
+                            
+                        </h5>
+                        <% if (errorMessage) { %>
+                        <h6 class="user-message user-message--error"><%= errorMessage %></h6>
+                        <% } %>
+                        <form action="#" method="post">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for=""></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="nav-link <%= path === '/tribe-result1' ? 'active' : '' %>" href="/tribe-level-result"> Click for Tribe level results....</a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for=""></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="nav-link <%= path === '/tribe-result1' ? 'active' : '' %>" href="/tribe-level-result"> Click for Squad level results....</a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for=""></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="nav-link <%= path === '/tribe-result1' ? 'active' : '' %>" href="/tribe-level-result">Click for Others...</a>
+                                </div>
+                            </div>
+
+                            <div class="row submit text-center">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <input type="hidden" name="user" value="<%= user %>">
+                                <input type="submit" value="Edit Tribe details >>" class="submit-btn">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col md-6 right">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <%- include('./includes/end.ejs') %>

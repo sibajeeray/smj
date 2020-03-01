@@ -1,0 +1,987 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/review.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="contents" id="requirements">
+
+        <div class="page-height background">
+            <h1 class="welcome">Review Assessment</h1>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" name="answers" value="<%= answers %>">
+            <div class="container">
+
+                <form action="/survey/update-requirements" method="POST" class="resupdate">
+                    <div class="row submit text-center">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="assessmentId" value="<%- assessmentId %>" />
+                        <input type="hidden" name="user" value="<%= user %>">
+                        <input type="submit" id="removefirst" value="Re-do Assessment  >>" class="submit-btn">
+                    </div>
+                </form>
+                <% if(data === 4) { %>
+                <form action="/survey/result" method="POST" class="resupdate">
+                    <div class="row submit text-center">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="assessmentId" value="<%- assessmentId %>" />
+                        <input type="hidden" name="user" value="<%= user %>">
+                        <input type="submit" id="removesecond" value="View my Assessment Result  >>" class="submit-btn">
+                    </div>
+                </form>
+                <% } %>
+
+                <h6 class="questions text-position">
+                    Section 1. Requirements
+                </h6>
+
+                <h4 class="text-position">
+                    Basic
+                    <hr class="rule">
+                </h4>
+                <!-- Requirement section Basic questions and answers goes here               -->
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Do all requirements have Acceptance Criteria
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.requirements.requirements_basic.c1_req1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Have at least 40% of Requirements been Risk Assessed (RRA) for Testing?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.requirements.requirements_basic.c1_req2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Testing included in Req Elaboration?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.requirements.requirements_basic.c1_req3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Testing included in all estimation / planning?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.requirements.requirements_basic.c1_req4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Has DoD been agreed?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.requirements.requirements_basic.c1_req5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Has Testing of requirements considered non-functional types?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.requirements.requirements_basic.c1_req6 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Have Non Functional requirements been defined?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.requirements.requirements_basic.c1_req7 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="text-position">
+                    <hr class="rule">
+                    Intermediate
+                    <hr class="rule">
+                </h4>
+                <!-- Requirement section Intermediate questions and answers goes here               -->
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Does Acceptance criteria include functional and non-functional test types?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.requirements.requirements_intermediate.c2_req1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Have at least 75% of Requirements been Risk Assessed for Testing?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.requirements.requirements_intermediate.c2_req2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Has Test Type Coverage been completed for all requirements?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.requirements.requirements_intermediate.c2_req3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Has testing in / out of sprints been confirmed for each requirement?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.requirements.requirements_intermediate.c2_req4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirement section Mature questions and answers goes here               -->
+                <h4 class="text-position">
+                    Mature
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is functional testing planned in sprints more than out of sprint?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.requirements.requirements_mature.c3_req1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Have all Requirements been Risk Assessed for Testing?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.requirements.requirements_mature.c3_req2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is non-functional testing planned in sprints more than out of sprints?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.requirements.requirements_mature.c3_req3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="questions text-position">
+                    Section 2. Testing
+                </h6>
+
+                <!-- Testing section Basic questions and answers goes here               -->
+
+                <h4 class="text-position">
+                    Basic
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Has a Test Approach (Tribe) been completed & agreed with stakeholders?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.testing.testing_basic.c1_test1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Regression automated at least 50%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.testing.testing_basic.c1_test2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Progression automated at least 30%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.testing.testing_basic.c1_test3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Do the number of linked tests reflect RRA for at least 40% of requirements?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_basic.c1_test4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is a TSR produced for all testing done?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_basic.c1_test5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is an orchestrator being used for CI?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_basic.c1_test6 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Does your customer contribute to Showcases?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_basic.c1_test7 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Test data masked / synthetic?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_basic.c1_test8 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Are all tests recorded/integrated in JIRA (issue type of Test)?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_basic.c1_test9 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Do all Requirements have tests linked?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_basic.c1_test10 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Testing section Intermediate questions and answers goes here               -->
+
+                <h4 class="text-position">
+                    <hr class="rule">
+                    Intermediate
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Was at least 60% of testing done in Sprints?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.testing.testing_intermediate.c2_test1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Regression at least 85% automated?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.testing.testing_intermediate.c2_test2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Progression at least 85% automated?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.testing.testing_intermediate.c2_test3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Do the number of linked tests reflect RRA for more than 40% of requirements?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_intermediate.c2_test4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is a TSR at least 50% automated?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_intermediate.c2_test5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Do you reuse tests?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_intermediate.c2_test6 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testing section Mature questions and answers goes here               -->
+
+                <h4 class="text-position">
+                    Mature
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Was at least 80% of testing done in Sprints?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.testing.testing_mature.c3_test1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Regression at least 90% automated?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.testing.testing_mature.c3_test2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Progression at least 90% automated?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.testing.testing_mature.c3_test3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Do the number of linked tests reflect RRA for at least 80% of requirements?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_mature.c3_test4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the TSR fully automated?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_mature.c3_test5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is testing integrated with the CI Tool?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_mature.c3_test6 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the Customer a member of the Squad?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.testing.testing_mature.c3_test7 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h6 class="questions text-position">
+                    Section 3. Build
+                </h6>
+
+                <!-- Build section Basic questions and answers goes here               -->
+
+                <h4 class="text-position">
+                    Basic
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is UT automated and triggered from build at least 30%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.build.build_basic.c1_build1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is frequency of Builds at least fortnightly?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.build.build_basic.c1_build2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the % of successful Builds > 30%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.build.build_basic.c1_build3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    One click deployment to CI environments?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.build.build_basic.c1_build4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Are at least 90% of builds automated?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.build.build_basic.c1_build5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Code Coverage at least 85%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.build.build_basic.c1_build6 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Do all builds include automated validation tests?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.build.build_basic.c1_build7 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Build section Intermediate questions and answers goes here               -->
+
+                <h4 class="text-position">
+                    <hr class="rule">
+                    Intermediate
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is UT automated and triggered from build more than 50%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.build.build_intermediate.c2_build1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is frequency of Builds at least weekly?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.build.build_intermediate.c2_build2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the % of successful Builds > 60%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.build.build_intermediate.c2_build3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    One click deployment to test environments?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.build.build_intermediate.c2_build4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Do you have an orchestrator to trigger automated builds through source control?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.build.build_intermediate.c2_build5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Build section Mature questions and answers goes here               -->
+
+                <h4 class="text-position">
+                    Mature
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is UT automated and triggered from build at least 90%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.build.build_mature.c3_build1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is frequency of Builds at least daily?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.build.build_mature.c3_build2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the % of successful Builds > 90%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.build.build_mature.c3_build3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    One click deployment to 'final' pre-prod enviroments?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.build.build_mature.c3_build4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Are at least 95% of builds automated?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.build.build_mature.c3_build5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Code Coverage at least 90%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.build.build_mature.c3_build6 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <h6 class="questions text-position">
+                    Section 4. Deploy
+                </h6>
+
+                <!-- Deploy section Basic questions and answers goes here               -->
+
+                <h4 class="text-position">
+                    Basic
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the frequency of Production deployments < 3 months? </p> </div> <div
+                                        class="col-md-2 questions">
+                                        <span><% if(answers.deploy.deploy_basic.c1_deploy1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Deployment automated at least 30%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.deploy.deploy_basic.c1_deploy2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the % of successful Deployments > 30%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.deploy.deploy_basic.c1_deploy3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is TVT automated and triggered from deployment at least 30% ?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.deploy.deploy_basic.c1_deploy4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is BVT automated and triggered from deployment at least 30% ?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.deploy.deploy_basic.c1_deploy5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Does the average deployment time for your platform meet industry standards?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.deploy.deploy_basic.c1_deploy6 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Deploy section Intermediate questions and answers goes here               -->
+
+                <h4 class="text-position">
+                    <hr class="rule">
+                    Intermediate
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the frequency of Production deployments < 8 weeks? </p> </div> <div
+                                        class="col-md-2 questions">
+                                        <span><% if(answers.deploy.deploy_intermediate.c2_deploy1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Deployment automated more than 30%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.deploy.deploy_intermediate.c2_deploy2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the % of successful Deployments > 60%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.deploy.deploy_intermediate.c2_deploy3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is TVT automated and triggered from deployment at least 60% ?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.deploy.deploy_intermediate.c2_deploy4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is BVT automated and triggered from deployment at least 50% ?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.deploy.deploy_intermediate.c2_deploy5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Deploy section Mature questions and answers goes here               -->
+
+                <h4 class="text-position">
+                    Mature
+                    <hr class="rule">
+                </h4>
+
+                <div class="row">
+                    <div class="col-md-8 questionsbox">
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the frequency of Production deployments < 4 weeks? </p> </div> <div
+                                        class="col-md-2 questions">
+                                        <span><% if(answers.deploy.deploy_mature.c3_deploy1 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is Deployment automated at least 90%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.deploy.deploy_mature.c3_deploy2 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is the % of successful Deployments > 90%?
+                                </p>
+                            </div>
+                            <div class="col-md-2 questions">
+                                <span><% if(answers.deploy.deploy_mature.c3_deploy3 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is TVT automated and triggered from deployment at least 90% ?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.deploy.deploy_mature.c3_deploy4 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Is BVT automated and triggered from deployment at least 70% ?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.deploy.deploy_mature.c3_deploy5 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 questions">
+                                <p class="data">
+                                    Does the average deployment time for your platform exceed industry standards?
+                                </p>
+                            </div>
+                            <div class="col-md-2 value">
+                                <span><% if(answers.deploy.deploy_mature.c3_deploy6 === 'true') {%>Yes<%} else {%>No<%} %></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="col-md-7 survey-submit">
+                <div class="btn-box">
+                    <span class="btnn">
+                        <a href="/survey/result" class="submit-btn btn btn-default btn-lg mysubmit font-weight-bold row submit text-center">
+                            >>>Click here to view your result
+                        </a>
+                    </span>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <%- include('./includes/end.ejs') %>

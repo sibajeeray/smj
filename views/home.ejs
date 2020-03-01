@@ -1,0 +1,154 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/sign-up-in/style.css">
+<link rel="stylesheet" href="/css/sign-up-in/animate-custom.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+
+    <div id="home" class="contents page-height">
+        <div class="container background">
+
+            <div class="heading mb-5 pt-5">
+                <h1 class="welcome text-center"> Quality COE </h1>
+            </div>
+
+            <% if (errorMessage) { %>
+            <div class="user-message user-message--success"><%= errorMessage %></div>
+            <% } %>
+
+            <% if(!isLoggedin) { %>
+            <div class="row for-smj">
+
+                <div class="col-md-6 smj-logo">
+                    <div class="survey-time">
+                        <h5>SMJ 2.0</h5>
+                        <p class="about-time">This assessment will take less than 45 mins to complete. You can save your
+                            assessment at the end of any section and come back later to complete the assessment.</p>
+                    </div>
+                    <div class="image-section">
+                        <img class="logo-smj img-fluid" src="../images/qes2.png" alt="">
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <section id="log_form">
+                        <div id="container_demo">
+                            <a class="hiddenanchor" id="toregister"></a>
+                            <a class="hiddenanchor" id="tologin"></a>
+                            <div id="wrapper">
+                                <div id="login" class="animate form">
+                                    <div class="form-header">
+                                        <h1>Log In</h1>
+                                    </div>
+                                    <form action="/login_validation" method="post" autocomplete="on">
+                                        <% if (errorMessage) { %>
+                                        <div class="user-message user-message--error"><%= errorMessage %></div>
+                                        <% } %>
+                                        <p>
+                                            <label for="email" class="uname" data-icon="u"> Your email</label>
+                                            <input id="email" name="email" required="required" type="text"
+                                                placeholder="mymail@anz.com" />
+                                        </p>
+                                        <p>
+                                            <label for="password" class="youpasswd" data-icon="p"> Your password
+                                            </label>
+                                            <input id="password" name="password" required="required" type="password"
+                                                placeholder="eg. X8df!90EO" />
+                                        </p>
+                                        <p class="login button">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <input type="submit" value="Login" />
+                                        </p>
+                                        <p class="change_link">
+                                            Don't have account ?
+                                            <a href="#toregister" class="to_register">Create Here</a>
+                                        </p>
+                                    </form>
+                                    <div class="centered">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <a href="/reset">Reset Password</a>
+                                    </div>
+                                </div>
+
+                                <div id="register" class="animate form">
+
+                                    <div class="form-header">
+                                        <h1>Sign Up</h1>
+                                    </div>
+
+                                    <form action="/register" method="post" autocomplete="on">
+
+                                        <p>
+                                            <% if (errorMessage) { %>
+                                            <div class="user-message user-message--error"><%= errorMessage %>
+                                            </div>
+                                            <% } %>
+                                            <label for="usernamesignup" class="uname" data-icon="u">Your Full
+                                                Name</label>
+                                            <input id="usernamesignup" name="usernamesignup" required="required"
+                                                type="text" placeholder="eg. Sushant Kumar" />
+                                        </p>
+                                        <p>
+                                            <label for="emailsignup" class="youmail" data-icon="e"> Your ANZ
+                                                email</label>
+                                            <input id="emailsignup" name="emailsignup" required="required" type="email"
+                                                placeholder="eg. mysupermail@anz.com" />
+                                        </p>
+                                        <p>
+                                            <label for="passwordsignup" class="youpasswd" data-icon="p">Your
+                                                password </label>
+                                            <input id="passwordsignup" name="passwordsignup" required="required"
+                                                type="password" placeholder="eg. X8df!90EO" />
+                                        </p>
+                                        <p>
+                                            <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please
+                                                confirm your password </label>
+                                            <input id="passwordsignup_confirm" name="passwordsignup_confirm"
+                                                required="required" type="password" placeholder="eg. X8df!90EO" />
+                                        </p>
+                                        <p class="signin button">
+                                            <input type="submit" value="Sign up" />
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        </p>
+                                        <p class="change_link">
+                                            Already have an Account ?
+                                            <a href="#tologin" class="to_register"> Log in </a>
+                                        </p>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <% } else { %>
+
+                <div class="row details">
+                    <div class="col-md-7 smj-logo">
+                        <div class="smj-text">
+                            SMJ 2.0
+                        </div>
+                    </div>
+                    <div class="col-md-5 survey-submit ">
+                        <div class="btn-box">
+                            <span class="btnn">
+                                <a href="/survey/result" class="btn btn-default btn-lg mysubmit font-weight-bold">
+                                    >>>Click here to view Assessment result
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+            </div>
+
+            <div style="padding-bottom: 80px;"></div>
+        </div>
+
+
+    </div>
+    <!-- <div class="brand-line-1"></div> -->
+    <%- include('./includes/end.ejs') %>

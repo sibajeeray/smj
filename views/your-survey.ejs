@@ -1,0 +1,90 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="stylesheet" href="/css/thanku.css">
+<link rel="stylesheet" href="/css/your-survey.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="contents">
+        <div class="container-fluid page-height">
+            <h6 class="result thanku">
+                You have performed <%- count%> assessments...
+            </h6>
+            <!-- 
+            <% if (errorMessage) { %>
+                <div class="user-message user-message--errormain"><%= errorMessage %></div>
+            <% } %> -->
+
+
+            <div class="row options">
+
+                <div class="col-md-12 result">
+                    <a class="view-survey" href="/tribe">Start a New Assessment</a>
+                </div>
+
+                <div class="line-break">
+
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Business Name</th>
+                        <th>Tribe Name</th>
+                        <th>Squad Name</th>
+                        <!-- <th>TAL Name</th>
+                        <th>TPL Name</th> -->
+                        <th>Completion Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <% if(assessmentData) { assessmentData.forEach( function (assessment){ const date = assessment.cdate %>
+                    <tr>
+                        <td><%-assessment.businessname %></td>
+                        <td><%-assessment.tribename %></td>
+                        <td><%-assessment.squadname %></td>
+                        <!-- <td><%-assessment.talname %></td>
+                                    <td><%-assessment.tplname %></td> -->
+                        <td><%- assessment.date %></td>
+                        <td><%- assessment.status %></td>
+                        <td>
+                            <div class="survey-btns">
+                                <form action="/survey/update-survey" method="post">
+                                    <input type="hidden" name="assessmentId" value="<%- assessment._id %>" />
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="submit" value="Update">
+                                </form>
+                            </div>
+                            <div class="survey-btns">
+                                <form action="/survey/review-survey" method="post">
+                                    <input type="hidden" name="assessmentId" value="<%- assessment._id %>" />
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="submit" value="View">
+                                </form>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <% }) } %>
+
+                </table>
+            </div>
+
+
+            <!-- <div class="buttonsoption">
+                <div class="row foroptions">
+                    <div class="col-md-4 first">
+                        <a href="#" target="_blank" rel="noopener noreferrer"> View Submitted Assessment</a>
+                    </div>
+                    <div class="col-md-4 second">
+                        <a href="#" target="_blank" rel="noopener noreferrer"> Update Assessment</a>
+                    </div>
+                    <div class="col-md-4 third">
+                        <a href="/views/tribe.ejs" target="_blank" rel="noopener noreferrer"> New Assessment</a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <%- include('./includes/end.ejs') %>

@@ -1,0 +1,54 @@
+<header>
+    <nav class="navbar navbar-expand-md">
+        <div class="logo">
+            <a href="/" class="navbar-brand">
+                <img src="../images/anz-png-brand-logo.png" alt="logo" class="logo-img">
+            </a>
+        </div>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#mainnavigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainnavigation">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '/about' ? 'active' : '' %>" href="/about-smj">Help</a>
+                </li>
+                <% if (!isAuthenticated) { %>
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '/signup' ? 'active' : '' %>" href="/sign-up-in">Login</a>
+                </li>
+                <% } else { %>
+                <li class="nav-item glyphicon glyphicon-user">
+                    <ul class="after-login">
+                        <a href="/survey/review-survey" class="text-color logout-style">
+                            <!-- <span class="glyphicon glyphicon-user"> -->
+                                VIEW MY ASSESSMENT
+                            <!-- </span> -->
+                        </a>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item glyphicon glyphicon-user">
+                    <form action="/logout" method="post">
+                        <ul class="after-login">
+                            <% if(user){ %>
+                                <span class="nav-item glyphicon glyphicon-user welcome-user"><%- user %></span>
+                            <% } %>
+                        </ul>
+                        <ul>
+                            <input type="submit" value="Logout" class="logout-style">
+                        </ul>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    </form>
+                </li>
+
+                <% } %>
+
+            </ul>
+        </div>
+    </nav>
+</header>

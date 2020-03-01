@@ -1,0 +1,76 @@
+.data select{
+    float: right;
+}
+
+.guide h4 {
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 2px;
+    font-weight: 900;
+    color: #0572CA;
+    border-bottom: 1px solid #ffffff;
+    display: inline-block;
+
+}
+
+.data {
+    font-size: 13px;
+    font-weight: bold;
+    display: block;
+}
+
+/* .basic input{
+    text-align: center;
+} */
+
+.background{
+    background-image: url('../images/survey-bg-img.jpg');
+    background-size: cover;
+    background-position: center; 
+    position: relative;
+    opacity: 0.9;
+}
+
+.image{
+    background-image: url('../images/requirement-img.png');
+    background-size: contain;
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+.submit input {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    background-color: #0572CA;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 4px 12px;
+}
+
+.submit input:hover{
+    background-color: #8bcc8b;
+}
+
+.question{
+    opacity: 0.8;
+    width: auto;
+    font-weight: bold; 
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    /* text-align: center; */
+    padding-top: 20px;
+}
+
+#requirements form select {
+    width: 100%;
+}
+#requirements form p {
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+#requirements form div.submit {
+    padding: 40px 0;
+}

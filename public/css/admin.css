@@ -1,0 +1,67 @@
+.admindata{
+    font-size: 90%;
+    display: block;
+}
+
+input[type=text]{
+    width:100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px, solid, #ccc;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    display: block;
+}
+
+input[type=submit]{
+    background-color: #80c4c4;
+    color: #fff;
+    padding: 8px 10px;
+    border:none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover{
+    background-color: #0d5555;
+}
+
+.admindata .form-container {
+    margin: 0 20%;
+}
+.admindata .form-container label {
+    margin: 0
+}
+.admindata .form-container .field {
+    margin-bottom: 20px;
+}
+.admindata .form-container .button {
+    margin-top: 30px;
+}
+@media only screen and (min-width: 700px){
+    .admindata .form-container {
+        margin: 0 30%;
+    }  
+}
+
+.login-image{
+   background-image: url(../images/qes.png);
+   background-repeat: no-repeat;
+    height: 400px;
+}
+
+.adminblock{
+    background: radial-gradient(rgb(58, 58, 134),rgb(162, 162, 204));
+    background-size: cover;
+    background-position: center; 
+    position: relative;
+    opacity: 0.9;
+    
+}
+
+.field{
+    color: #fff;
+    font-size: 17px;
+}

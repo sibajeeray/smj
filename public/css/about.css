@@ -1,0 +1,34 @@
+.notfound{
+    color: #4811af;
+    text-align: center;
+    padding-top: 18%;
+}
+
+.background {
+    /* background-image: url('../images/image-main.jpg');
+    background-size: cover;
+    background-position: center; */
+    position: relative;
+  }
+
+  .smj-bg-image{
+      height: 650px;
+      background-image: url(../images/output-onlinepngtools\ \(1\).png);
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  .page-height{
+      height: 800px;
+  }
+
+
+  .help-description{
+    background: transparent;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .about-smj-below{
+      padding-bottom: 50px;
+  }

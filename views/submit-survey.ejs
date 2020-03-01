@@ -1,0 +1,23 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="stylesheet" href="/css/thanku.css">
+</head>
+
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="contents">
+        <div class="container-fluid page-height background">
+            <h5 class="thanku">
+                Thank you for submitting the Assessment... 
+            </h5>
+            <div class="result">
+                <form action="/survey/result" method="post" class="view-survey">
+                    <input type="submit" class="text-center" value="View my Survey Result">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="user" value="<%= user %>">
+                    
+                </form>
+            </div>
+        </div>
+
+    <%- include('./includes/end.ejs') %>

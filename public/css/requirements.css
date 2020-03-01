@@ -1,0 +1,125 @@
+.data select{
+    float: right;
+}
+
+.guide h4 {
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 2px;
+    font-weight: 600;
+    color: rgb(4, 77, 136);
+    border-bottom: 1px solid #ffffff;
+    display: inline-block;
+
+}
+
+.heading{
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 2px;
+    padding-top: 10px;
+    font-weight: 750;
+    /* background-color: aqua; */
+    color: #360c66;
+    /* border-bottom: 1px solid #ffffff;
+    display: inline-block; */
+
+}
+
+.data {
+    font-size: 13px;
+    font-weight: bold;
+    display: block;
+}
+
+/* .basic input{
+    text-align: center;
+} */
+
+.background{
+    /* background: radial-gradient( rgb(255, 255, 255), rgb(50, 126, 240)); */
+    background: transparent;
+    height: 100vh;
+}
+
+.image{
+    background-image: url('../images/requirement-bg.png');
+    background-size: contain;
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+.submit{
+    display: inline-block;
+    padding: 100px;
+}
+
+.submit input {
+    display: inline-block;
+    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    background-color: rgb(85, 168, 236);
+    text-transform: uppercase;
+    color: #fff;
+    padding: 4px 12px;
+}
+
+.submit input:hover{
+    background-color: #2e10da;
+}
+
+.question{
+    opacity: 0.8;
+    width: auto;
+    font-weight: bold; 
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    /* text-align: center; */
+    padding-top: 20px;
+}
+
+#requirements form select {
+    width: 100%;
+}
+#requirements form p {
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+#requirements form div.submit {
+    padding: 40px 0;
+    display: inline-block;
+    padding-left: 3px;
+}
+
+
+
+/** For Survey result Page **/
+#survey_result .headline {
+    padding: 30px 0;
+}
+#survey_result .survey-title {
+    color: #555355;
+}
+#survey_result .chart-title {
+    padding-top: 20px ;
+    padding-bottom: 40px ;
+}
+.user-message--error{
+    color: #f13e3e;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .welcome{
+      font-size: 20px;
+      padding-bottom: 20px;
+  }
+
+  .questionsbox{
+      padding-bottom: 20px;
+  }

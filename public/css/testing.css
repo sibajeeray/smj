@@ -1,0 +1,18 @@
+.image{
+    background-image: url('../images/testing-img.png');
+    background-size: contain;
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+#testing form select {
+    width: 100%;
+}
+#testing form p {
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+#testing form div.submit {
+    padding: 40px 0;
+}
