@@ -1,0 +1,58 @@
+{
+    "requirements": {
+        "c1": {
+            "q1": "Do all requirements have Acceptance Criteria?",
+            "q2": "Have at least 40% of Requirements been Risk Assessed (RRA) for Testing?"
+        },
+        "c2": {
+            "q1": "Does Acceptance criteria include functional and non-functional test types?",
+            "q2": "Have at least 75% of Requirements been Risk Assessed for Testing?"
+        },
+        "c3": {
+            "q1": "Is functional testing planned in sprints more than out of sprint?",
+            "q2": "Have all Requirements been Risk Assessed for Testing?"
+        }
+    },
+    "testing": {
+        "c1": {
+            "q1": "Has a Test Approach (Tribe) been completed & agreed with stakeholders?",
+            "q2": "Is Regression automated at least 50%?"
+        },
+        "c2": {
+            "q1": "Was at least 60% of testing done in Sprints?",
+            "q2": "Is Regression at least 85% automated?"
+        },
+        "c3": {
+            "q1": "Was at least 80% of testing done in Sprints?",
+            "q2": "Is Regression at least 90% automated?"
+        }
+    },
+    "build": {
+        "c1": {
+            "q1": "Is UT automated and triggered from build at least 30%?",
+            "q2": "Is frequency of Builds at least fortnightly?"
+        },
+        "c2": {
+            "q1": "Is UT automated and triggered from build more than 50%?",
+            "q2": "Is frequency of Builds at least weekly?"
+        },
+        "c3": {
+            "q1": "Is UT automated and triggered from build at least 90%?",
+            "q2": "Is frequency of Builds at least daily?"
+        }
+    },
+    "deploy": {
+        "c1": {
+            "q1": "Is the frequency of Production deployments < 3 months?",
+            "q2": "Is Deployment automated at least 30%?"
+        },
+        "c2": {
+            "q1": "Is the frequency of Production deployments < 8 weeks?",
+            "q2": "Is Deployment automated more than 30%?"
+        },
+        "c3": {
+            "q1": "Is the frequency of Production deployments < 4 weeks?",
+            "q2": "Is Deployment automated at least 90%?"
+        }
+    }
+}

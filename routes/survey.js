@@ -28,9 +28,8 @@ router.get('/deploy',surveyController.getDeploy);
 router.post('/deploy',surveyController.postDeploy);
 
 router.post('/review-survey', surveyController.postReviewSurvey);
-// router.get('/view-survey', surveyController.getViewSurvey);
 
-router.get('/review-survey', surveyController.getReviewSurvey);
+router.get('/review-survey', surveyController.getReviewSurvey); 
 
 router.post('/result', surveyController.getResult);
 

@@ -39,6 +39,11 @@
 
     <%- include('./includes/end.ejs') %>
 
+    <script>
+        var questions = JSON.parse('<%- JSON.stringify(questions) %>'); 
+        retriveQuestions(questions);
+    </script>
+
     <% if(locals.showForm) { %>
     <script>
         var answers = JSON.parse('<%- JSON.stringify(showForm) %>');

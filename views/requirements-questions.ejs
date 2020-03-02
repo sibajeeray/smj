@@ -4,12 +4,10 @@
 </head>
 
 <body>
+
     <%- include('./includes/navbar.ejs') %>
     <div class="contents" id="requirements">
          <div class=" background"> <!--page-height -->
-
-            
-
             <div class="container">
                     <% if (errorMessage) { %>
                     <div class="user-message user-message--error text-center"><%= errorMessage %></div>
@@ -41,11 +39,14 @@
     <script src="/js/surveys/requirement.js"></script>
 
 <%- include('./includes/end.ejs') %> 
+<script>
+    var questions = JSON.parse('<%- JSON.stringify(questions) %>'); 
+    retriveQuestions(questions);
+</script>
 
 <% if(locals.showForm) { %>
     <script>
         var answers =  JSON.parse('<%- JSON.stringify(showForm) %>');   
         fillTheForm(answers);
     </script>
-    
 <% }%>

@@ -11,67 +11,9 @@
         "/login_validation",
         "/survey/view-survey"
     ],
-    "questions": {
-        "requirements": {
-            "competency_1": {
-                "requirements_1": "Do all requirements have Acceptance Criteria?",
-                "requirements_2": "Have at least 40% of Requirements been Risk Assessed (RRA) for Testing?"
-            },
-            "competency_2": {
-                "requirements_1": "Does Acceptance criteria include functional and non-functional test types?",
-                "requirements_2": "Have at least 75% of Requirements been Risk Assessed for Testing?"
-            },
-            "competency_3": {
-                "requirements_1": "Is functional testing planned in sprints more than out of sprint?",
-                "requirements_2": "Have all Requirements been Risk Assessed for Testing?"
-            }
-        },
-        "testing": {
-            "competency_1": {
-                "testing_1": "Has a Test Approach (Tribe) been completed & agreed with stakeholders?",
-                "testing_2": "Is Regression automated at least 50%?"
-            },
-            "competency_2": {
-                "testing_1": "Was at least 60% of testing done in Sprints?",
-                "testing_2": "Is Regression at least 85% automated?"
-            },
-            "competency_3": {
-                "testing_1": "Was at least 80% of testing done in Sprints?",
-                "testing_2": "Is Regression at least 90% automated?"
-            }
-        },
-        "build": {
-            "competency_1": {
-                "build_1": "Is UT automated and triggered from build at least 30%?",
-                "build_2": "Is frequency of Builds at least fortnightly?"
-            },
-            "competency_2": {
-                "build_1": "Is UT automated and triggered from build more than 50%?",
-                "build_2": "Is frequency of Builds at least weekly?"
-            },
-            "competency_3": {
-                "build_1": "Is UT automated and triggered from build at least 90%?",
-                "build_2": "Is frequency of Builds at least daily?"
-            }
-        },
-        "deploy": {
-            "competency_1": {
-                "deploy_1": "Is the frequency of Production deployments < 3 months?",
-                "deploy_2": "Is Deployment automated at least 30%?"
-            },
-            "competency_2": {
-                "deploy_1": "Is the frequency of Production deployments < 8 weeks?",
-                "deploy_2": "Is Deployment automated more than 30%?"
-            },
-            "competency_3": {
-                "deploy_1": "Is the frequency of Production deployments < 4 weeks?",
-                "deploy_2": "Is Deployment automated at least 90%?"
-            }
-        }
-    },
-    "competency_name" : {
-        "competency_1" : "Basic",
-        "competency_2" : "Intermediate",
-        "competency_3" : "Mature"
+    "competency_name": {
+        "c1": "Basic",
+        "c2": "Intermediate",
+        "c3": "Mature"
     }
 }

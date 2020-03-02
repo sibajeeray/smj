@@ -7,6 +7,7 @@ var utils = require('../utilities/utilFunctions');
 const puppeteer = require('puppeteer');
 const bcrypt = require('bcryptjs');
 const config = require('../config/global/config');
+const questions = require('../config/global/questions');
 
 
 exports.getSurveySummary = async (req, res, error = null) => {
@@ -43,12 +44,29 @@ const prepareSurveySummary = (assessmentData) => {
     return result;
 }
 
-
-
-
 exports.getRequirements = (req, res, next) => {
-    console.log(`Inside get Requirements()`);
-    res.render('requirement-questions', { pageTitle: 'Requirements', comp: req.body.comp, path: '/', user: req.session.email, isUpdating: 'false' });
+    if(!req.session.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
+    else {
+        res.render('requirements-questions', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            questions: questions.requirements,
+            isUpdating: 'false',
+            errorMessage: null
+        });
+
+    }
 };
 
 
@@ -64,32 +82,27 @@ exports.postRequirements = async (req, res, next) => {
         var answers = {};
         answers.requirements = {};
 
-        answers.requirements.requirements_basic = {};
-        answers.requirements.requirements_intermediate = {};
-        answers.requirements.requirements_mature = {};
+        answers.requirements.c1 = {};
+        answers.requirements.c2 = {};
+        answers.requirements.c3 = {};
 
         answers.testing = {};
-        answers.testing.testing_basic = {};
-        answers.testing.testing_intermediate = {};
-        answers.testing.testing_mature = {};
+        answers.testing.c1 = {};
+        answers.testing.c2 = {};
+        answers.testing.c3 = {};
 
         answers.build = {};
-        answers.build.build_basic = {};
-        answers.build.build_intermediate = {};
-        answers.build.build_mature = {};
+        answers.build.c1 = {};
+        answers.build.c2 = {};
+        answers.build.c3 = {};
 
         answers.deploy = {};
-        answers.deploy.deploy_basic = {};
-        answers.deploy.deploy_intermediate = {};
-        answers.deploy.deploy_mature = {};
+        answers.deploy.c1 = {};
+        answers.deploy.c2= {};
+        answers.deploy.c3 = {};
 
         assessment.answered = 1;
 
-        var comp = {
-            c1: "requirements_basic",
-            c2: "requirements_intermediate",
-            c3: "requirements_mature"
-        }
         delete req.body['_csrf'];
         delete req.body['isUpdating'];
 
@@ -102,11 +115,12 @@ exports.postRequirements = async (req, res, next) => {
             delete req.body.save;
         }
 
-        var questions = Object.keys(req.body);
-        questions.forEach((questionName) => {
+        var allQuestions = Object.keys(req.body);
+        allQuestions.forEach((questionName) => {
             if (req.body[questionName]) {
-                var type = comp[questionName.slice(0, 2)];
-                answers.requirements[type][questionName] = req.body[questionName];
+                var competency = questionName.slice(0, 2);
+                var question = questionName.slice(3, 9);
+                answers.requirements[competency][question] = req.body[questionName];
             }
         });
 
@@ -116,13 +130,7 @@ exports.postRequirements = async (req, res, next) => {
 
         if (reqFor === "proceed") {
             console.log("Requesting for next section");
-            res.render('testing-questions', {
-                pageTitle: 'Testing',
-                path: '/',
-                user: req.session.username,
-                isUpdating: req.body.isUpdating,
-                errorMessage: null
-            });
+            res.redirect('/survey/testing');
         }
         else if (reqFor === "save") {
             console.log("Will be in same section");
@@ -134,6 +142,7 @@ exports.postRequirements = async (req, res, next) => {
                 user: req.session.username,
                 showForm: req.body,
                 isUpdating: req.body.isUpdating,
+                questions: questions.requirements,
                 errorMessage: null
             });
 
@@ -151,7 +160,28 @@ exports.postRequirements = async (req, res, next) => {
 };
 
 exports.getTesting = (req, res, next) => {
-    res.render('testing-questions', { pageTitle: 'Testing', comp: req.body.comp, path: '/', user: req.session.email });
+    if(!req.session.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
+    else {
+        res.render('testing-questions', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            questions: questions.testing,
+            isUpdating: 'false',
+            errorMessage: null
+        });
+
+    }
 };
 
 exports.postTesting = async (req, res, next) => {
@@ -167,16 +197,10 @@ exports.postTesting = async (req, res, next) => {
 
         let reqFor = "";
         var testing = {};
+        testing.c1 = {};
+        testing.c2 = {};
+        testing.c3 = {};
 
-        testing.testing_basic = {};
-        testing.testing_intermediate = {};
-        testing.testing_mature = {};
-
-        var comp = {
-            c1: "testing_basic",
-            c2: "testing_intermediate",
-            c3: "testing_mature"
-        }
         delete req.body['_csrf'];
         delete req.body['isUpdating'];
 
@@ -193,31 +217,23 @@ exports.postTesting = async (req, res, next) => {
         //     delete req.body.back;
         // }
 
-        var questions = Object.keys(req.body);
-        questions.forEach((questionName) => {
+        var allQuestions = Object.keys(req.body);
+        allQuestions.forEach((questionName) => {
             if (req.body[questionName]) {
-                var type = comp[questionName.slice(0, 2)];
-                testing[type][questionName] = req.body[questionName];
+                var competency = questionName.slice(0, 2);
+                var question = questionName.slice(3, 9);
+                testing[competency][question] = req.body[questionName];
             }
         });
-
-        console.log(testing);
         assessment.answers.testing = testing;
         await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: 2, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
 
         if (reqFor === "proceed") {
             console.log("Requesting for next section");
-            res.render('build-questions', {
-                pageTitle: 'Build',
-                path: '/',
-                user: req.session.username,
-                isUpdating: req.body.isUpdating,
-                errorMessage: null
-            });
+            res.redirect('/survey/build');
         }
         else if (reqFor === "save") {
             console.log("Will be in same section");
-            console.log(testing);
             req.flash('success', 'Data saved successfully');
             res.render('testing-questions', {
                 pageTitle: 'Testing',
@@ -225,6 +241,7 @@ exports.postTesting = async (req, res, next) => {
                 user: req.session.username,
                 showForm: req.body,
                 isUpdating: req.body.isUpdating,
+                questions: questions.testing,
                 errorMessage: null
             });
         }
@@ -242,7 +259,28 @@ exports.postTesting = async (req, res, next) => {
 
 
 exports.getBuild = (req, res, next) => {
-    res.render('build-questions', { pageTitle: 'Build', comp: req.body.comp, path: '/', user: req.session.email });
+    if(!req.session.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
+    else {
+        res.render('build-questions', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            questions: questions.build,
+            isUpdating: 'false',
+            errorMessage: null
+        });
+
+    }
 };
 
 exports.postBuild = async (req, res, next) => {
@@ -258,15 +296,10 @@ exports.postBuild = async (req, res, next) => {
         let reqFor = "";
         var build = {};
 
-        build.build_basic = {};
-        build.build_intermediate = {};
-        build.build_mature = {};
+        build.c1 = {};
+        build.c2 = {};
+        build.c3 = {};
 
-        var comp = {
-            c1: "build_basic",
-            c2: "build_intermediate",
-            c3: "build_mature"
-        }
         delete req.body['_csrf'];
         delete req.body['isUpdating'];
 
@@ -279,11 +312,12 @@ exports.postBuild = async (req, res, next) => {
             delete req.body.save;
         }
 
-        var questions = Object.keys(req.body);
-        questions.forEach((questionName) => {
+        var allQuestions = Object.keys(req.body);
+        allQuestions.forEach((questionName) => {
             if (req.body[questionName]) {
-                var type = comp[questionName.slice(0, 2)];
-                build[type][questionName] = req.body[questionName];
+                var competency = questionName.slice(0, 2);
+                var question = questionName.slice(3, 9);
+                build[competency][question] = req.body[questionName];
             }
         });
 
@@ -291,14 +325,7 @@ exports.postBuild = async (req, res, next) => {
         await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: 3, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
 
         if (reqFor === "proceed") {
-            res.render('deploy-questions', {
-                pageTitle: 'Deploy Questions',
-                path: '/',
-                user: req.session.username,
-                isUpdating: req.body.isUpdating,
-                errorMessage: null
-            });
-            console.log("##");
+            res.redirect('/survey/deploy');
         }
         else if (reqFor === "save") {
             console.log("Will be in same section");
@@ -309,6 +336,7 @@ exports.postBuild = async (req, res, next) => {
                 user: req.session.username,
                 showForm: req.body,
                 isUpdating: req.body.isUpdating,
+                questions: questions.build,
                 errorMessage: null
             });
         }
@@ -324,11 +352,30 @@ exports.postBuild = async (req, res, next) => {
     }
 };
 
-
 exports.getDeploy = (req, res, next) => {
-    res.render('deploy-questions', { pageTitle: 'Deploy', comp: req.body.comp, path: '/', user: req.session.email });
-};
+    if(!req.session.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
+    else {
+        res.render('deploy-questions', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            questions: questions.deploy,
+            isUpdating: 'false',
+            errorMessage: null
+        });
 
+    }
+};
 
 exports.postDeploy = async (req, res, next) => {
     console.log(`Inside postDeploy () `);
@@ -341,15 +388,10 @@ exports.postDeploy = async (req, res, next) => {
 
         let reqFor = "";
         var deploy = {};
-        deploy.deploy_basic = {};
-        deploy.deploy_intermediate = {};
-        deploy.deploy_mature = {};
+        deploy.c1 = {};
+        deploy.c2 = {};
+        deploy.c3 = {};
 
-        var comp = {
-            c1: "deploy_basic",
-            c2: "deploy_intermediate",
-            c3: "deploy_mature"
-        }
         delete req.body['_csrf'];
         delete req.body['isUpdating'];
 
@@ -362,16 +404,15 @@ exports.postDeploy = async (req, res, next) => {
             delete req.body.save;
         }
 
-        var questions = Object.keys(req.body);
-        questions.forEach((questionName) => {
+        var allQuestions = Object.keys(req.body);
+        allQuestions.forEach((questionName) => {
             if (req.body[questionName]) {
-                var type = comp[questionName.slice(0, 2)];
-                deploy[type][questionName] = req.body[questionName];
+                var competency = questionName.slice(0, 2);
+                var question = questionName.slice(3, 9);
+                deploy[competency][question] = req.body[questionName];
             }
         });
-
         assessment.answers.deploy = deploy;
-
         await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: 4, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
 
         console.log(`Deploy answers updated successfully`);
@@ -391,6 +432,7 @@ exports.postDeploy = async (req, res, next) => {
                 user: req.session.username,
                 showForm: req.body,
                 isUpdating: req.body.isUpdating,
+                questions: questions.deploy,
                 errorMessage: null
             });
         }
@@ -437,8 +479,6 @@ exports.getReviewSurvey = async (req, res, next) => {
                     path: '/',
                     user: req.session.username,
                     answers: assessment.answers,
-                    data: assessment.answered,
-                    assessmentId: assessment._id
                 })
         }
     }
@@ -447,34 +487,10 @@ exports.getReviewSurvey = async (req, res, next) => {
     }
 };
 
-exports.getViewSurvey = async (req, res) => {
-    console.log(`Inside getViewSurvey() `);
-    const assessment = await Assessment.findOne({ _id: "5e5b8403d7527e08a48f8968" }).exec();
-    prepareQandA(config.questions, assessment.answers);
-    res.render('review-survey',
-        {
-            pageTitle: 'Review Survey',
-            path: '/',
-            questions: config.questions
-            // user: req.session.username,
-            // assessment: assessment
-        })
-}
-
-const prepareQandA = (questions, answers) => {
-    var result = {}
-    Object.keys(answers).forEach((section) => {
-        result[section] = {};
-        result
-    })
-}
-
 exports.postReviewSurvey = async (req, res, next) => {
     console.log(`Inside postReviewSurvey() `);
     try {
-
         if (!req.body.assessmentId) throw new Error("AssessmentId not available in session");
-        req.session.assessmentId = req.body.assessmentId
         const assessment = await Assessment.findOne({ _id: req.body.assessmentId }).exec();
         if (!assessment) throw new Error("Assessment could not be found");
 
@@ -483,9 +499,8 @@ exports.postReviewSurvey = async (req, res, next) => {
                 pageTitle: 'Review Survey',
                 path: '/',
                 user: req.session.username,
-                answers: assessment.answers,
-                data: assessment.answered,
-                assessmentId: assessment._id
+                questions: questions,
+                assessment: assessment
             })
     }
     catch (err) {
@@ -581,7 +596,6 @@ exports.getUpdatedRequirements = (req, res, next) => {
 exports.getResult = async (req, res, next) => {
     try {
         if (!req.session.assessmentId) throw new Error("AssessmentId not available in session");
-        if (!req.session.assessmentId) req.session.assessmentId = req.body.assessmentId
         const assessment = await Assessment.findOne({ _id: req.session.assessmentId }).exec();
         if (!assessment) throw new Error("Insert Your Tribe Deatils First");
 
@@ -598,29 +612,28 @@ exports.getResult = async (req, res, next) => {
             stats.build = {};
             stats.deploy = {};
 
-            stats.requirements.requirements_basic = {};
-            stats.requirements.requirements_intermediate = {};
-            stats.requirements.requirements_mature = {};
-            stats.testing.testing_basic = {};
-            stats.testing.testing_intermediate = {};
-            stats.testing.testing_mature = {};
-            stats.build.build_basic = {};
-            stats.build.build_intermediate = {};
-            stats.build.build_mature = {};
-            stats.deploy.deploy_basic = {};
-            stats.deploy.deploy_intermediate = {};
-            stats.deploy.deploy_mature = {};
+            stats.requirements.c1 = {};
+            stats.requirements.c2 = {};
+            stats.requirements.c3 = {};
+            stats.testing.c1 = {};
+            stats.testing.c2 = {};
+            stats.testing.c3 = {};
+            stats.build.c1 = {};
+            stats.build.c2 = {};
+            stats.build.c3  = {};
+            stats.deploy.c1 = {};
+            stats.deploy.c2 = {};
+            stats.deploy.c3  = {};
 
-            stats.requirements.requirements_basic.yes = stats.requirements.requirements_basic.no = stats.requirements.requirements_intermediate.yes = stats.requirements.requirements_intermediate.no = stats.requirements.requirements_mature.yes = stats.requirements.requirements_mature.no = stats.testing.testing_basic.yes = stats.testing.testing_basic.no = stats.testing.testing_intermediate.yes = stats.testing.testing_intermediate.no = stats.testing.testing_mature.yes = stats.testing.testing_mature.no = stats.build.build_basic.yes = stats.build.build_basic.no = stats.build.build_intermediate.yes = stats.build.build_intermediate.no = stats.build.build_mature.yes = stats.build.build_mature.no = stats.deploy.deploy_basic.yes = stats.deploy.deploy_basic.no = stats.deploy.deploy_intermediate.yes = stats.deploy.deploy_intermediate.no = stats.deploy.deploy_intermediate.yes = stats.deploy.deploy_intermediate.no = stats.deploy.deploy_mature.yes = stats.deploy.deploy_mature.no = 0
-            // stats.requirements.yes = stats.requirements.no = stats.testing.yes = stats.testing.no = stats.build.yes = stats.build.no = stats.deploy.yes = stats.deploy.no = 0
+            stats.requirements.c1.yes = stats.requirements.c1.no = stats.requirements.c2.yes = stats.requirements.c2.no = stats.requirements.c3.yes = stats.requirements.c3.no = stats.testing.c1.yes = stats.testing.c1.no = stats.testing.c2.yes = stats.testing.c2.no = stats.testing.c3.yes = stats.testing.c3.no = stats.build.c1.yes = stats.build.c1.no = stats.build.c2.yes = stats.build.c2.no = stats.build.c3.yes = stats.build.c3.no = stats.deploy.c1.yes = stats.deploy.c1.no = stats.deploy.c2.yes = stats.deploy.c2.no = stats.deploy.c2.yes = stats.deploy.c2.no = stats.deploy.c3.yes = stats.deploy.c3.no = 0
 
-            Object.keys(answerObj).forEach((category) => {
-                Object.keys(answerObj[category]).forEach(newcategory => {
-                    Object.keys(answerObj[category][newcategory]).forEach(question => {
-                        if (answerObj[category][newcategory][question] === "false" || answerObj[category][newcategory][question] === "NA")
-                            stats[category][newcategory]['no']++;
-                        else if (answerObj[category][newcategory][question] === "true")
-                            stats[category][newcategory]['yes']++;
+            Object.keys(answerObj).forEach((section) => {
+                Object.keys(answerObj[section]).forEach(competency => {
+                    Object.keys(answerObj[section][competency]).forEach(question => {
+                        if (answerObj[section][competency][question] === "false" || answerObj[section][competency][question] === "NA")
+                            stats[section][competency]['no']++;
+                        else if (answerObj[section][competency][question] === "true")
+                            stats[section][competency]['yes']++;
                     })
                 })
             });
@@ -649,6 +662,7 @@ exports.getResult = async (req, res, next) => {
         }
     }
     catch (err) {
+        console.log(err);
         res.render('tribe', {
             pageTitle: 'Tribe Details',
             path: '/',

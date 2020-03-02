@@ -3,37 +3,37 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const requirements_basic = new Schema({
-    c1_req1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_req2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_req3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_req4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_req5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_req6: {
+    q6: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_req7: {
+    q7: {
         type: String,
         required: false,
         default: 'NA'
@@ -41,22 +41,22 @@ const requirements_basic = new Schema({
 }, { _id: false })
 
 const requirements_intermediate = new Schema({
-    c2_req1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_req2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_req3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_req4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
@@ -64,17 +64,17 @@ const requirements_intermediate = new Schema({
 }, { _id: false })
 
 const requirements_mature = new Schema({
-    c3_req1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_req2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_req3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
@@ -82,52 +82,52 @@ const requirements_mature = new Schema({
 }, { _id: false })
 
 const testing_basic = new Schema({
-    c1_test1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_test2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_test3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_test4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_test5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_test6: {
+    q6: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_test7: {
+    q7: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_test8: {
+    q8: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_test9: {
+    q9: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_test10: {
+    q10: {
         type: String,
         required: false,
         default: 'NA'
@@ -135,37 +135,37 @@ const testing_basic = new Schema({
 }, { _id: false })
 
 const testing_intermediate = new Schema({
-    c2_test1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_test2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_test3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_test4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_test4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_test5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_test6: {
+    q6: {
         type: String,
         required: false,
         default: 'NA'
@@ -173,37 +173,37 @@ const testing_intermediate = new Schema({
 }, { _id: false })
 
 const testing_mature = new Schema({
-    c3_test1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_test2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_test3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_test4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_test5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_test6: {
+    q6: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_test7: {
+    q7: {
         type: String,
         required: false,
         default: 'NA'
@@ -211,37 +211,37 @@ const testing_mature = new Schema({
 }, { _id: false })
 
 const build_basic = new Schema({
-    c1_build1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_build2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_build3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_build4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_build5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_build6: {
+    q6: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_build7: {
+    q7: {
         type: String,
         required: false,
         default: 'NA'
@@ -249,27 +249,27 @@ const build_basic = new Schema({
 }, { _id: false })
 
 const build_intermediate = new Schema({
-    c2_build1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_build2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_build3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_build4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_build5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
@@ -277,32 +277,32 @@ const build_intermediate = new Schema({
 }, { _id: false })
 
 const build_mature = new Schema({
-    c3_build1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_build2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_build3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_build4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_build5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_build6: {
+    q6: {
         type: String,
         required: false,
         default: 'NA'
@@ -310,32 +310,32 @@ const build_mature = new Schema({
 }, { _id: false })
 
 const deploy_basic = new Schema({
-    c1_deploy1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_deploy2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_deploy3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_deploy4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_deploy5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c1_deploy6: {
+    q6: {
         type: String,
         required: false,
         default: 'NA'
@@ -343,32 +343,32 @@ const deploy_basic = new Schema({
 }, { _id: false })
 
 const deploy_intermediate = new Schema({
-    c2_deploy1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_deploy2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_deploy3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_deploy4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_deploy4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c2_deploy5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
@@ -376,32 +376,32 @@ const deploy_intermediate = new Schema({
 }, { _id: false })
 
 const deploy_mature = new Schema({
-    c3_deploy1: {
+    q1: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_deploy2: {
+    q2: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_deploy3: {
+    q3: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_deploy4: {
+    q4: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_deploy5: {
+    q5: {
         type: String,
         required: false,
         default: 'NA'
     },
-    c3_deploy6: {
+    q6: {
         type: String,
         required: false,
         default: 'NA'
@@ -409,60 +409,60 @@ const deploy_mature = new Schema({
 }, { _id: false })
 
 const requirements = new Schema({
-    requirements_basic: {
+    c1: {
         required: true,
         type: requirements_basic
     },
-    requirements_intermediate: {
+    c2: {
         required: true,
         type: requirements_intermediate
     },
-    requirements_mature: {
+    c3: {
         required: true,
         type: requirements_mature
     }
 }, { _id: false })
 
 const testing = new Schema({
-    testing_basic: {
+    c1: {
         required: true,
         type: testing_basic
     },
-    testing_intermediate: {
+    c2: {
         required: true,
         type: testing_intermediate
     },
-    testing_mature: {
+    c3: {
         required: true,
         type: testing_mature
     }
 }, { _id: false })
 
 const build = new Schema({
-    build_basic: {
+   c1: {
         required: true,
         type: build_basic
     },
-    build_intermediate: {
+    c2: {
         required: true,
         type: build_intermediate
     },
-    build_mature: {
+    c3: {
         required: true,
         type: build_mature
     }
 }, { _id: false })
 
 const deploy = new Schema({
-    deploy_basic: {
+    c1: {
         required: true,
         type: deploy_basic
     },
-    deploy_intermediate: {
+    c2: {
         required: true,
         type: deploy_intermediate
     },
-    deploy_mature: {
+    c3: {
         required: true,
         type: deploy_mature
     }

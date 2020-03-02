@@ -105,10 +105,10 @@ exports.postLogin = (req, res, next) => {
             /* Added new logic from here */
 
             Assesment.find({ email: req.session.email })
-              .then(answers => {
-                if (answers) {
-                  console.log(answers);
-                  const count = answers.length;
+              .then(assessments => {
+                if (assessments) {
+                  console.log(assessments);
+                  const count = assessments.length;
                   res.redirect('/survey');
                 }
                 else {

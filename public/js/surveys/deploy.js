@@ -1,34 +1,11 @@
-var deploy = {
-    competency_1: {
-        deploy_1: 'Is the frequency of Production deployments < 3 months?',
-        deploy_2: 'Is Deployment automated at least 30%?',
-        // deploy_3: 'Is the % of successful Deployments > 30%?',
-        // deploy_4: 'Is TVT automated and triggered from deployment at least 30% ?',
-        // deploy_5: 'Is BVT automated and triggered from deployment at least 30% ?',
-        // deploy_6: 'Does the average deployment time for your platform meet industry standards? '
-    },
-    competency_2: {
-        deploy_1: 'Is the frequency of Production deployments < 8 weeks?',
-        // deploy_2: 'Is Deployment automated more than 30%?',
-        // deploy_3: 'Is the % of successful Deployments > 60%?',
-        // deploy_4: 'Is TVT automated and triggered from deployment at least 60% ?',
-        // deploy_5: 'Is BVT automated and triggered from deployment at least 50% ?'
-    },
-    competency_3: {
-        deploy_1: 'Is the frequency of Production deployments < 4 weeks?',
-        // deploy_2: 'Is Deployment automated at least 90%?',
-        // deploy_3: 'Is the % of successful Deployments > 90%?',
-        // deploy_4: 'Is TVT automated and triggered from deployment at least 90% ?',
-        // deploy_5: 'Is BVT automated and triggered from deployment at least 70% ?',
-        // deploy_6: 'Does the average deployment time for your platform exceed industry standards? '
-    }
-}
-
 window.current_select_id = 1;
 window.showForm = false;
 
-$(document).ready(function () {
+function retriveQuestions(questions){
+    window.questions = questions
+};
 
+$(document).ready(function () {
     if (!window.showForm) {
         $("#form1").append(
             `<div id="row_1" class="row">
@@ -36,7 +13,7 @@ $(document).ready(function () {
                     <p class="data"> ${getQuestion(1, 1)}</p>
                 </div>
                 <div class="col-md-2 value">
-                    <select id="select_1" name="c1_deploy1" comp_no=1 q_no=1 onChange="doAction(this);" >
+                    <select id="select_1" name="c1_q1" comp_no=1 q_no=1 onChange="doAction(this);" >
                         <option value=""> </option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
@@ -45,21 +22,17 @@ $(document).ready(function () {
             </div>`
         ).hide().show('slow');
     }
-
 })
 
 
 function fillTheForm(answers) {
-    console.log("fillTheForm() called");
+
     window.showForm = true;
-    console.log(answers);
-
     window.current_select_id = 1;
-
 
     Object.keys(answers).forEach((q_name) => {
         var comp_no = q_name.slice(1, 2);
-        var q_no = q_name.slice(9, 10);
+        var q_no = q_name.slice(4, 9);
         var options = "";
 
         if (answers[q_name] === "true") {
@@ -134,7 +107,7 @@ function doAction(element) {
                             <p class="data"> ${question}</p>
                         </div>
                         <div class="col-md-2 value">
-                            <select id="select_${window.current_select_id}" name="c${comp_no}_deploy${q_no}" onChange="doAction(this);" comp_no=${comp_no} q_no=${q_no}>
+                            <select id="select_${window.current_select_id}" name="c${comp_no}_q${q_no}" onChange="doAction(this);" comp_no=${comp_no} q_no=${q_no}>
                                 <option value=""> </option>
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
@@ -167,7 +140,7 @@ function doAction(element) {
 }
 
 function getQuestion(comp_no, ques_no) {
-    var question = deploy['competency_' + comp_no]['deploy_' + ques_no];
+    var question = window.questions['c' + comp_no]['q' + ques_no];
     console.log(question);
     return question;
 }

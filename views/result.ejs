@@ -44,36 +44,36 @@
 
                         <h4 class="chart-title text-center">Requirements Result</h4>
                         <div class="donut-inner">
-                            <h6>Basic Requirements Score: <%=stats.requirements.requirements_basic.yes %>/7</h6>
-                            <h6>Inter Requirements Score: <%=stats.requirements.requirements_intermediate.yes %>/4</h6>
-                            <h6>Mature Requirements Score: <%=stats.requirements.requirements_mature.yes %>/3</h6>
+                            <h6>Basic Requirements Score: <%=stats.requirements.c1.yes %>/7</h6>
+                            <h6>Inter Requirements Score: <%=stats.requirements.c2.yes %>/4</h6>
+                            <h6>Mature Requirements Score: <%=stats.requirements.c3.yes %>/3</h6>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <canvas id="testing_chart" width="400" height="400"></canvas>
                         <h4 class="chart-title text-center">Testing Result</h4>
                         <div class="donut-inner">
-                            <h6>Basic Testing Score: <%=stats.testing.testing_basic.yes %>/10</h6>
-                            <h6>Inter Testing Score: <%=stats.testing.testing_intermediate.yes %>/6</h6>
-                            <h6>Mature Testing Score: <%=stats.testing.testing_mature.yes %>/7</h6>
+                            <h6>Basic Testing Score: <%=stats.testing.c1.yes %>/10</h6>
+                            <h6>Inter Testing Score: <%=stats.testing.c2.yes %>/6</h6>
+                            <h6>Mature Testing Score: <%=stats.testing.c3.yes %>/7</h6>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <canvas id="build_chart" width="400" height="400"></canvas>
                         <h4 class="chart-title text-center">Build Result</h4>
                         <div class="donut-inner">
-                            <h6>Basic Build Score: <%=stats.build.build_basic.yes %>/7</h6>
-                            <h6>Inter Build Score: <%=stats.build.build_intermediate.yes %>/5</h6>
-                            <h6>Mature Build Score: <%=stats.build.build_mature.yes %>/6</h6>
+                            <h6>Basic Build Score: <%=stats.build.c1.yes %>/7</h6>
+                            <h6>Inter Build Score: <%=stats.build.c2.yes %>/5</h6>
+                            <h6>Mature Build Score: <%=stats.build.c3.yes %>/6</h6>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <canvas id="deploy_chart" width="400" height="400"></canvas>
                         <h4 class="chart-title text-center">Deploy Result</h4>
                         <div class="donut-inner">
-                            <h6>Basic Deploy Score: <%=stats.deploy.deploy_basic.yes %>/6</h6>
-                            <h6>Inter Deploy Score: <%=stats.deploy.deploy_intermediate.yes %>/5</h6>
-                            <h6>Mature Deploy Score: <%=stats.deploy.deploy_mature.yes %>/6</h6>
+                            <h6>Basic Deploy Score: <%=stats.deploy.c1.yes %>/6</h6>
+                            <h6>Inter Deploy Score: <%=stats.deploy.c2.yes %>/5</h6>
+                            <h6>Mature Deploy Score: <%=stats.deploy.c3.yes %>/6</h6>
                         </div>
                     </div>
                 </div>
@@ -88,36 +88,36 @@
                 var ctx_build = document.getElementById('build_chart').getContext('2d');
                 var ctx_deploy = document.getElementById('deploy_chart').getContext('2d');
 
-                var requirements_basic_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_basic.no %>'));
-                var requirements_basic_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_basic.yes %>'));
-                var requirements_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_intermediate.no %>'));
-                var requirements_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_intermediate.yes %>'));
-                var requirements_mature_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_mature.no %>'));
-                var requirements_mature_yes = JSON.parse(JSON.stringify('<%=stats.requirements.requirements_mature.yes %>'));
+                var requirements_basic_yes = JSON.parse(JSON.stringify('<%=stats.requirements.c1.no %>'));
+                var requirements_basic_yes = JSON.parse(JSON.stringify('<%=stats.requirements.c1.yes %>'));
+                var requirements_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.requirements.c2.no %>'));
+                var requirements_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.requirements.c2.yes %>'));
+                var requirements_mature_yes = JSON.parse(JSON.stringify('<%=stats.requirements.c3.no %>'));
+                var requirements_mature_yes = JSON.parse(JSON.stringify('<%=stats.requirements.c3.yes %>'));
 
 
-                var testing_basic_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_basic.no %>'));
-                var testing_basic_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_basic.yes %>'));
-                var testing_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_intermediate.no %>'));
-                var testing_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_intermediate.yes %>'));
-                var testing_mature_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_mature.no %>'));
-                var testing_mature_yes = JSON.parse(JSON.stringify('<%=stats.testing.testing_mature.yes %>'));
+                var testing_basic_yes = JSON.parse(JSON.stringify('<%=stats.testing.c1.no %>'));
+                var testing_basic_yes = JSON.parse(JSON.stringify('<%=stats.testing.c1.yes %>'));
+                var testing_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.testing.c2.no %>'));
+                var testing_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.testing.c2.yes %>'));
+                var testing_mature_yes = JSON.parse(JSON.stringify('<%=stats.testing.c3.no %>'));
+                var testing_mature_yes = JSON.parse(JSON.stringify('<%=stats.testing.c3.yes %>'));
 
 
-                var build_basic_yes = JSON.parse(JSON.stringify('<%=stats.build.build_basic.no %>'));
-                var build_basic_yes = JSON.parse(JSON.stringify('<%=stats.build.build_basic.yes %>'));
-                var build_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.build.build_intermediate.no %>'));
-                var build_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.build.build_intermediate.yes %>'));
-                var build_mature_yes = JSON.parse(JSON.stringify('<%=stats.build.build_mature.no %>'));
-                var build_mature_yes = JSON.parse(JSON.stringify('<%=stats.build.build_mature.yes %>'));
+                var build_basic_yes = JSON.parse(JSON.stringify('<%=stats.build.c1.no %>'));
+                var build_basic_yes = JSON.parse(JSON.stringify('<%=stats.build.c1.yes %>'));
+                var build_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.build.c2.no %>'));
+                var build_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.build.c2.yes %>'));
+                var build_mature_yes = JSON.parse(JSON.stringify('<%=stats.build.c3.no %>'));
+                var build_mature_yes = JSON.parse(JSON.stringify('<%=stats.build.c3.yes %>'));
 
 
-                var deploy_basic_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_basic.no %>'));
-                var deploy_basic_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_basic.yes %>'));
-                var deploy_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_intermediate.no %>'));
-                var deploy_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_intermediate.yes %>'));
-                var deploy_mature_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_mature.no %>'));
-                var deploy_mature_yes = JSON.parse(JSON.stringify('<%=stats.deploy.deploy_mature.yes %>'));
+                var deploy_basic_yes = JSON.parse(JSON.stringify('<%=stats.deploy.c1.no %>'));
+                var deploy_basic_yes = JSON.parse(JSON.stringify('<%=stats.deploy.c1.yes %>'));
+                var deploy_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.deploy.c2.no %>'));
+                var deploy_intermediate_yes = JSON.parse(JSON.stringify('<%=stats.deploy.c2.yes %>'));
+                var deploy_mature_yes = JSON.parse(JSON.stringify('<%=stats.deploy.c3.no %>'));
+                var deploy_mature_yes = JSON.parse(JSON.stringify('<%=stats.deploy.c3.yes %>'));
 
                 var background_basic = '';
                 if ((requirements_basic_yes / 7) < 0.5) {

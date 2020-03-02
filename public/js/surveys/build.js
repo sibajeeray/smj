@@ -1,32 +1,9 @@
-var build = {
-    competency_1: {
-        build_1: 'Is UT automated and triggered from build at least 30%?',
-        build_2: 'Is frequency of Builds at least fortnightly?',
-        // build_3: 'Is the % of successful Builds > 30%?',
-        // build_4: 'One click deployment to CI environments?',
-        // build_5: 'Are at least 90% of builds automated?',
-        // build_6: 'Is Code Coverage at least 85%?',
-        // build_7: 'Do all builds include automated validation tests?'
-    },
-    competency_2: {
-        build_1: 'Is UT automated and triggered from build more than 50%?',
-        // build_2: 'Is frequency of Builds at least weekly?',
-        // build_3: 'Is the % of successful Builds > 60%?',
-        // build_4: 'One click deployment to test environments?',
-        // build_5: 'Do you have an orchestrator to trigger automated builds through source control?'
-    },
-    competency_3: {
-        build_1: 'Is UT automated and triggered from build at least 90%?',
-        // build_2: 'Is frequency of Builds at least daily?',
-        // build_3: 'Is the % of successful Builds > 90%?',
-        // build_4: `One click deployment to 'final' pre-prod enviroments?`,
-        // build_5: 'Are at least 95% of builds automated?',
-        // build_6: 'Is Code Coverage at least 90%?'
-    }
-}
-
 window.current_select_id = 1;
 window.showForm = false;
+
+function retriveQuestions(questions){
+    window.questions = questions
+};
 
 $(document).ready(function () {
     if (!window.showForm) {
@@ -37,7 +14,7 @@ $(document).ready(function () {
                     <p class="data"> ${getQuestion(1, 1)}</p>
                 </div>
                 <div class="col-md-2 value">
-                    <select id="select_1" name="c1_build1" comp_no=1 q_no=1 onChange="doAction(this);" >
+                    <select id="select_1" name="c1_q1" comp_no=1 q_no=1 onChange="doAction(this);" >
                         <option value=""> </option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
@@ -50,16 +27,13 @@ $(document).ready(function () {
 })
 
 function fillTheForm(answers) {
-    console.log("fillTheForm() called");
+
     window.showForm = true;
-    console.log(answers);
-
     window.current_select_id = 1;
-
 
     Object.keys(answers).forEach((q_name) => {
         var comp_no = q_name.slice(1, 2);
-        var q_no = q_name.slice(8, 9);
+        var q_no = q_name.slice(4, 9);
         var options = "";
 
         if (answers[q_name] === "true") {
@@ -136,7 +110,7 @@ function doAction(element) {
                             <p class="data"> ${question}</p>
                         </div>
                         <div class="col-md-2 value">
-                            <select id="select_${window.current_select_id}" name="c${comp_no}_build${q_no}" onChange="doAction(this);" comp_no=${comp_no} q_no=${q_no}>
+                            <select id="select_${window.current_select_id}" name="c${comp_no}_q${q_no}" onChange="doAction(this);" comp_no=${comp_no} q_no=${q_no}>
                                 <option value=""> </option>
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
@@ -171,7 +145,7 @@ function doAction(element) {
 }
 
 function getQuestion(comp_no, ques_no) {
-    var question = build['competency_' + comp_no]['build_' + ques_no];
+    var question = window.questions['c' + comp_no]['q' + ques_no];
     console.log(question);
     return question;
 }
