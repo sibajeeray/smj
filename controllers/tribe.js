@@ -18,6 +18,29 @@ exports.postTribe = async (req, res, next) => {
         user: req.session.email
       });
     }
+
+    var answers = {};
+    answers.requirements = {};
+
+    answers.requirements.c1 = {};
+    answers.requirements.c2 = {};
+    answers.requirements.c3 = {};
+
+    answers.testing = {};
+    answers.testing.c1 = {};
+    answers.testing.c2 = {};
+    answers.testing.c3 = {};
+
+    answers.build = {};
+    answers.build.c1 = {};
+    answers.build.c2 = {};
+    answers.build.c3 = {};
+
+    answers.deploy = {};
+    answers.deploy.c1 = {};
+    answers.deploy.c2= {};
+    answers.deploy.c3 = {};
+
     const assessmentData = new Assessment({
       businessname: req.body.businessname,
       tribename: req.body.tribename,
@@ -27,7 +50,8 @@ exports.postTribe = async (req, res, next) => {
       talname: req.body.talname,
       tplname: req.body.tplname,
       userId: req.session.userId,
-      email: req.session.email
+      email: req.session.email,
+      answers: answers
     });
     
     const result = await assessmentData.save();

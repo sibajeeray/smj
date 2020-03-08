@@ -48,20 +48,31 @@
                                     <td><%- assessment.date %></td>
                                     <td><%- assessment.status %></td>
                                     <td>
+                                        <% if(assessment.status === 'Completed') { %>
                                         <div class="survey-btns">
-                                            <form action="/survey/update-survey" method="post">
+                                            <form action="/survey/review-survey" method="post">
                                                 <input type="hidden" name="assessmentId" value="<%- assessment._id %>" />
                                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                                 <input type="submit" value="Update">
                                             </form>
                                         </div>
+                                        
                                         <div class="survey-btns">
-                                            <form action="/survey/review-survey" method="post">
+                                            <form action="/survey/result" method="post">
                                                 <input type="hidden" name="assessmentId" value="<%- assessment._id %>" />
                                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                                 <input type="submit" value="View">
                                             </form>
                                         </div>
+                                        <% } else { %>
+                                            <div class="survey-btns">
+                                                <form action="/survey/complete-survey" method="post">
+                                                    <input type="hidden" name="assessmentId" value="<%- assessment._id %>" />
+                                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                    <input type="submit" value="Complete">
+                                                </form>
+                                            </div>
+                                        <% } %>
 
                                     </td>
                                 </tr>

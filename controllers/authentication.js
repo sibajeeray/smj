@@ -30,6 +30,53 @@ exports.validateAuth = async (req, res, next) => {
   }
 }
 
+exports.postSignup = (req, res, next) => {
+  console.log(req.body);
+  const name = req.body.usernamesignup;
+  const email = req.body.emailsignup;
+  const password = req.body.passwordsignup;
+  const confirmpassword = req.body.passwordsignup_confirm;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    req.flash('error', errors.array()[0].msg);
+    return res.redirect('/sign-up-in#toregister');
+  }
+  User.findOne({ email: email })
+    .then(userDoc => {
+      if (userDoc) {
+        req.flash('error', 'E-Mail exists already, please pick a different one.');
+        return res.redirect('/sign-up-in#toregister');
+      }
+      return bcrypt
+        .hash(password, 12)
+        .then(hashedPassword => {
+          const user = new User({
+            name: name,
+            email: email,
+            password: hashedPassword,
+            normalpwd: password
+          });
+          return user.save();
+        })
+        .then(result => {
+          User.findOne({ email: email })
+            .then(user => {
+              req.session.isLoggedIn = true;
+              req.session.userId = user._id;
+              req.session.email = user.email;
+              req.session.username = user.name;
+              uesrname = req.session.username;
+              res.render('tribe', { pageTitle: 'Enter Tribe Details', path: '/', user: uesrname, isAuthenticated: 'true', isLoggedin: 'true', errorMessage: null });
+            })
+
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 exports.getLogin = (req, res, next) => {
   console.log(`/login GET got called. Inside getLogin MiddleWare`);
 
@@ -133,52 +180,7 @@ exports.postLogin = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-exports.postSignup = (req, res, next) => {
-  console.log(req.body);
-  const name = req.body.usernamesignup;
-  const email = req.body.emailsignup;
-  const password = req.body.passwordsignup;
-  const confirmpassword = req.body.passwordsignup_confirm;
 
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    req.flash('error', errors.array()[0].msg);
-    return res.redirect('/sign-up-in#toregister');
-  }
-  User.findOne({ email: email })
-    .then(userDoc => {
-      if (userDoc) {
-        req.flash('error', 'E-Mail exists already, please pick a different one.');
-        return res.redirect('/sign-up-in#toregister');
-      }
-      return bcrypt
-        .hash(password, 12)
-        .then(hashedPassword => {
-          const user = new User({
-            name: name,
-            email: email,
-            password: hashedPassword,
-            normalpwd: password
-          });
-          return user.save();
-        })
-        .then(result => {
-          User.findOne({ email: email })
-            .then(user => {
-              req.session.isLoggedIn = true;
-              req.session.userId = user._id;
-              req.session.email = user.email;
-              req.session.username = user.name;
-              uesrname = req.session.username;
-              res.render('tribe', { pageTitle: 'Enter Tribe Details', path: '/', user: uesrname, isAuthenticated: 'true', isLoggedin: 'true', errorMessage: null });
-            })
-
-        });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
 
 exports.getLogout = (req, res, next) => {
 

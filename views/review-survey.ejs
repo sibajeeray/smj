@@ -40,19 +40,22 @@
                     <div class="row submit text-center">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <input type="hidden" name="user" value="<%= user %>">
-                        <input type="submit" id="removefirst" value="Re-do Assessment  >>" class="submit-btn">
+                        <input type="hidden" name="assessmentId" value="<%- assessment._id %>" />
+                        <input type="submit" id="removefirst" value="Re Assessment  >>" class="submit-btn">
                     </div>
                 </form>
+
                 <% if(assessment.answered === 4) { %>
-                <form action="/survey/result" method="POST" class="resupdate">
+                <form action="/survey/update-requirements" method="POST" class="resupdate">
                     <div class="row submit text-center">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <input type="hidden" name="user" value="<%= user %>">
-                        <input type="submit" id="removesecond" value="View my Assessment Result  >>" class="submit-btn">
+                        <input type="hidden" name="assessmentId" value="<%- assessment._id %>" />
+                        <input type="hidden" name="isUpdating" value="true" />
+                        <input type="submit" id="removesecond" value="Update Assessment  >>" class="submit-btn">
                     </div>
                 </form>
                 <% } %>
-
                 <h6 class="questions text-position">
                     Section 1. Requirements
                 </h6>

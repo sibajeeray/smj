@@ -33,10 +33,22 @@ router.get('/review-survey', surveyController.getReviewSurvey);
 
 router.post('/result', surveyController.getResult);
 
-router.post('/update-requirements', surveyController.getUpdatedRequirements);
-
 router.get('/result',surveyController.getResult);
 
 router.get('/send-result',surveyController.sendResultEmail);
+
+router.post('/complete-survey', surveyController.completeSurvey);
+
+router.post('/update-survey', surveyController.updateSurvey);
+
+/* Update Routes */
+
+router.post('/update-requirements', surveyController.getUpdatedRequirements);
+
+router.post('/update-testing', surveyController.getUpdatedTesting);
+
+router.post('/update-build', surveyController.getUpdatedBuild);
+
+router.post('/update-deploy', surveyController.getUpdatedDeploy);
 
 module.exports= router;

@@ -44,8 +44,8 @@ const prepareSurveySummary = (assessmentData) => {
     return result;
 }
 
-exports.getRequirements = (req, res, next) => {
-    if(!req.session.assessmentId) {
+exports.completeSurvey = async (req, res, next) => {
+    if(!req.body.assessmentId) {
         res.render('tribe', {
             pageTitle: 'Tribe',
             comp: req.body.comp,
@@ -55,10 +55,58 @@ exports.getRequirements = (req, res, next) => {
             errorMessage: "Fill the Tribe details First"
           });
     }
+    else{
+        const assessment = await Assessment.findOne({ _id: req.body.assessmentId }).exec();
+        if (!assessment) throw new Error("Insert Your Tribe Deatils First");
+        req.session.assessmentId=req.body.assessmentId;
+
+        if(assessment.answered===0){
+            res.redirect('/survey/requirements');
+        }
+        else if(assessment.answered===1){
+            res.redirect('/survey/testing');
+        }
+        else if(assessment.answered===2){
+            res.redirect('/survey/build');
+        }
+        else if(assessment.answered===3){
+            res.redirect('/survey/deploy');
+        }
+
+    }
+}
+
+exports.updateSurvey = async (req, res, next) => {
+    if(!req.body.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
+    else{
+        const assessment = await Assessment.findOne({ _id: req.body.assessmentId }).exec();
+        if (!assessment) throw new Error("Insert Your Tribe Deatils First");
+        req.session.assessmentId=req.body.assessmentId;
+    }
+}
+
+exports.getRequirements = (req, res, next) => {
+    if(!req.session.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
     else {
         res.render('requirements-questions', {
             pageTitle: 'Tribe',
-            comp: req.body.comp,
             path: '/',
             user: req.session.username,
             questions: questions.requirements,
@@ -85,22 +133,7 @@ exports.postRequirements = async (req, res, next) => {
         answers.requirements.c1 = {};
         answers.requirements.c2 = {};
         answers.requirements.c3 = {};
-
-        answers.testing = {};
-        answers.testing.c1 = {};
-        answers.testing.c2 = {};
-        answers.testing.c3 = {};
-
-        answers.build = {};
-        answers.build.c1 = {};
-        answers.build.c2 = {};
-        answers.build.c3 = {};
-
-        answers.deploy = {};
-        answers.deploy.c1 = {};
-        answers.deploy.c2= {};
-        answers.deploy.c3 = {};
-
+        
         assessment.answered = 1;
 
         delete req.body['_csrf'];
@@ -509,88 +542,54 @@ exports.postReviewSurvey = async (req, res, next) => {
     }
 };
 
-exports.getUpdatedRequirements = (req, res, next) => {
-    //     console.log(`Inside get Updated Requirements()`);
-    //     console.log(req.body);
-    //     user = req.session.email;
-    //     if (!user) {
-    //         res.redirect('/sign-up-in#tologin')
-    //     }
-    //     else {
-    //         Assessment.findOne({ email: user })
-    //             .then(tribe => {
-    //                 if (!tribe) {
-    //                     console.log("Survey data doesnot exist");
-    //                     return req.session.save(err => {
-    //                         if (err) {
-    //                             console.log(err);
-    //                             req.flash('error', 'Error Occured while creating session');
-    //                             res.redirect('/sign-up-in');
-    //                         }
-    //                         console.log(`Sending to /tribe`);
-    //                         res.render('tribe', { pageTitle: 'Enter Tribe Details', path: '/', user: req.session.username, isAuthenticated: 'true', errorMessage: 'Please Complete your Tribe details first' });
-    //                     });
-    //                 }
+exports.getUpdatedRequirements = async (req, res, next) => {
+    if(!req.body.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
+    else{
+        const assessment = await Assessment.findOne({ _id: req.body.assessmentId }).exec();
+        if (!assessment) throw new Error("Insert Your Tribe Deatils First");
+        req.session.assessmentId=req.body.assessmentId;
 
-    //                 else {
-    //                     Answers.findOne({ email: user })
-    //                         .then(answers => {
+        var answerSet = {};
 
-    //                             if (!answers) {
-    //                                 console.log("Survey data doesnot exist");
+        
 
-    //                                 return req.session.save(err => {
-    //                                     if (err) {
-    //                                         console.log(err);
-    //                                         req.flash('error', 'Error Occured while creating session');
-    //                                         res.redirect('/sign-up-in');
-    //                                     }
+        Object.keys(questions.requirements).forEach(comp =>{
+            Object.keys(questions.requirements[comp]).forEach(ques => {
+                if(assessment.answers.requirements[comp][ques] !== "NA")
+                answerSet[comp+"_"+ques] = assessment.answers.requirements[comp][ques];
+            })
+        })
 
+        res.render('requirements-questions', {
+            pageTitle: 'Requirements',
+            path: '/',
+            user: req.session.username,
+            showForm: answerSet,
+            isUpdating: true,
+            questions: questions.requirements,
+            errorMessage: null
+        });
 
-    //                                 });
-    //                             }
+    }
 
-    //                             else {
-    //                                 console.log(answers);
-    //                                 console.log(answers.answers.requirements.requirements_basic[0]);
-    //                                 console.log(`Sending to Questionaires`);
-    //                                 console.log(answers.availed);
+};
 
-    //                                 if (answers.availed === 1) {
-    //                                     res.render('testing-questions', { pageTitle: 'Testing', comp: req.body.comp, path: '/testing', user: req.session.username, isUpdating: req.body.isUpdating, isAuthenticated: 'true', errorMessage: null });
-    //                                 }
+exports.getUpdatedTesting = async (req, res, next) => {
+};
 
-    //                                 else if (answers.availed === 2) {
-    //                                     res.render('build-questions', { pageTitle: 'Build', comp: req.body.comp, path: '/build', user: req.session.username, isUpdating: req.body.isUpdating, isAuthenticated: 'true', errorMessage: null });
-    //                                 }
+exports.getUpdatedBuild = async (req, res, next) => {
+};
 
-    //                                 else if (answers.availed === 3) {
-    //                                     res.render('deploy-questions', { pageTitle: 'Deploy', comp: req.body.comp, path: '/deploy', user: req.session.username, isUpdating: req.body.isUpdating, isAuthenticated: 'true', errorMessage: null });
-    //                                 }
-    //                                 else if (answers.availed === 4 || answers.availed === 0) {
-    //                                     res.render('requirements-questions', { pageTitle: 'Requirements', path: '/requirements', user: req.session.username, isAuthenticated: 'true', isUpdating: req.body.isUpdating, errorMessage: null });
-    //                                 }
-    //                                 else {
-    //                                     res.render('review-survey',
-    //                                         {
-    //                                             pageTitle: 'Review Survey',
-    //                                             path: '/',
-    //                                             user: req.session.username,
-    //                                             comp: answers.competency,
-    //                                             answers: answers.answers
-    //                                         })
-    //                                 }
-    //                             }
-
-    //                         });
-
-    //                 }
-    //             })
-    //             .catch((err) => {
-    //                 console.log("Error Occured::" + err);
-    //                 throw err;
-    //             })
-    //     }
+exports.getUpdatedDeploy = async (req, res, next) => {
 };
 
 exports.getResult = async (req, res, next) => {

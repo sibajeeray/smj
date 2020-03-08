@@ -14,23 +14,6 @@ router.post('/admin-validation', authController.postAdminLogin);
 
 router.get('/sign-up-in',authController.getSignup);
 
-// router.post('/login_validation', authController.postLogin);
-
-router.post(
-  '/login_validation',
-  [
-    body('email')
-      .isEmail()
-      .withMessage('Please enter a valid email address.'),
-    body('password', 'Password has to be valid.')
-      .isLength({ min: 6 })
-      .isAlphanumeric()
-  ],
-  authController.postLogin
-);
-
-// router.post('/register', authController.postSignup);
-
 router.post(
   '/register',
   [
@@ -64,6 +47,23 @@ router.post(
   ],
   authController.postSignup
 );
+
+// router.post('/login_validation', authController.postLogin);
+
+router.post(
+  '/login_validation',
+  [
+    body('email')
+      .isEmail()
+      .withMessage('Please enter a valid email address.'),
+    body('password', 'Password has to be valid.')
+      .isLength({ min: 6 })
+      .isAlphanumeric()
+  ],
+  authController.postLogin
+);
+
+// router.post('/register', authController.postSignup);
 
 // router.get('/logout', authController.getLogout);
 
