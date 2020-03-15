@@ -36,7 +36,7 @@
             <input type="hidden" name="answers" value="<%= assessment.answers %>">
             <div class="container">
 
-                <form action="/survey/update-requirements" method="POST" class="resupdate">
+                <form action="/update-tribe" method="POST" class="resupdate">
                     <div class="row submit text-center">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <input type="hidden" name="user" value="<%= user %>">

@@ -1,106 +1,55 @@
 {
     "requirements": {
         "c1": {
-            "q1": "Do all requirements have Acceptance Criteria?",
-            "q2": "Have at least 40% of Requirements been Risk Assessed (RRA) for Testing?",
-            "q3": "Is Testing included in Req Elaboration?",
-            "q4": "Is Testing included in all estimation / planning?",
-            "q5": "Has DoD been agreed?",
-            "q6": "Has Testing of requirements considered non-functional types?",
-            "q7": "Have Non Functional requirements been defined?"
+            "q1": "Do all requirements have Acceptance Criteria?"
+            
         },
         "c2": {
-            "q1": "Does Acceptance criteria include functional and non-functional test types?",
-            "q2": "Have at least 75% of Requirements been Risk Assessed for Testing?",
-            "q3": "Has Test Type Coverage been completed for all requirements?",
-            "q4": "Has testing in / out of sprints been confirmed for each requirement?"
+            "q1": "Does Acceptance criteria include functional and non-functional test types?"
+            
         },
         "c3": {
-            "q1": "Is functional testing planned in sprints more than out of sprint?",
-            "q2": "Have all Requirements been Risk Assessed for Testing?",
-            "q3": "Is non-functional testing planned in sprints more than out of sprints?"
+            "q1": "Is functional testing planned in sprints more than out of sprint?"
+           
         }
     },
     "testing": {
         "c1": {
-            "q1": "Has a Test Approach (Tribe) been completed & agreed with stakeholders?",
-            "q2": "Is Regression automated at least 50%?",
-            "q3": "Is Progression automated at least 30%? ",
-            "q4": "Is the Level of Test identified during Requirements Risk Analysis comparable to the number of linked tests for at least 40% of testable requirements?",
-            "q5": "Is a TSR produced for all testing done?",
-            "q6": "Is an orchestrator being used for CI?",
-            "q7": "Does your customer contribute to Showcases?",
-            "q8": "Is Test data masked / synthetic?",
-            "q9": "Are all tests recorded/integrated in JIRA (issue type of Test)?",
-            "q10": "Do all testable requirements have linked tests?"
+            "q1": "Has a Test Approach (Tribe) been completed & agreed with stakeholders?"
+            
         },
         "c2": {
-            "q1": "Was at least 60% of testing done in Sprints?",
-            "q2": "Is Regression at least 85% automated?",
-            "q3": "Is Progression at least 85% automated? ",
-            "q4": "Is the Level of Test identified during Requirements Risk Analysis comparable to the number of linked tests for more than 40% of testable requirements?",
-            "q5": "Is a TSR at least 50% automated?",
-            "q6": "Do you reuse tests?"
+            "q1": "Was at least 60% of testing done in Sprints?"
+            
         },
         "c3": {
-            "q1": "Was at least 80% of testing done in Sprints?",
-            "q2": "Is Regression at least 90% automated?",
-            "q3": "Is Progression at least 90% automated?",
-            "q4": "Is the Level of Test identified during Requirements Risk Analysis comparable to the number of linked tests for at least 80% of testable requirements?",
-            "q5": "Is the TSR fully automated?",
-            "q6": "Is testing integrated with the CI Tool?",
-            "q7": "Is the Customer a member of the Squad?"
+            "q1": "Was at least 80% of testing done in Sprints?"
+            
         }
     },
     "build": {
         "c1": {
-            "q1": "Is UT automated and triggered from build at least 30%?",
-            "q2": "Is frequency of Builds at least fortnightly?",
-            "q3": "Is the % of successful Builds > 30%?",
-            "q4": "One click deployment to CI environments?",
-            "q5": "Are at least 90% of builds automated?",
-            "q6": "Is Code Coverage at least 85%?",
-            "q7": "Do all builds include automated validation tests?"
+            "q1": "Is UT automated and triggered from build at least 30%?"
+            
         },
         "c2": {
-            "q1": "Is UT automated and triggered from build more than 50%?",
-            "q2": "Is frequency of Builds at least weekly?",
-            "q3": "Is the % of successful Builds > 60%?",
-            "q4": "One click deployment to test environments?",
-            "q5": "Do you have an orchestrator to trigger automated builds through source control?"
+            "q1": "Is UT automated and triggered from build more than 50%?"
+            
         },
         "c3": {
-            "q1": "Is UT automated and triggered from build at least 90%?",
-            "q2": "Is frequency of Builds at least daily?",
-            "q3": "Is the % of successful Builds > 90%?",
-            "q4": "One click deployment to final pre-prod enviroments?",
-            "q5": "Are at least 95% of builds automated?",
-            "q6": "Is Code Coverage at least 90%?"
+            "q1": "Is UT automated and triggered from build at least 90%?"
+            
         }
     },
     "deploy": {
         "c1": {
-            "q1": "Is the frequency of Production deployments < 3 months?",
-            "q2": "Is Deployment automated at least 30%?",
-            "q3": "Is the % of successful Deployments > 30%?",
-            "q4": "Is TVT automated and triggered from deployment at least 30% ?",
-            "q5": "Is BVT automated and triggered from deployment at least 30% ?",
-            "q6": "Does the average deployment time for your platform meet industry standards? "
+            "q1": "Is the frequency of Production deployments < 3 months?"
         },
         "c2": {
-            "q1": "Is the frequency of Production deployments < 8 weeks?",
-            "q2": "Is Deployment automated more than 30%?",
-            "q3": "Is the % of successful Deployments > 60%?",
-            "q4": "Is TVT automated and triggered from deployment at least 60% ?",
-            "q5": "Is BVT automated and triggered from deployment at least 50% ?"
+            "q1": "Is the frequency of Production deployments < 8 weeks?"
         },
         "c3": {
-            "q1": "Is the frequency of Production deployments < 4 weeks?",
-            "q2": "Is Deployment automated at least 90%?",
-            "q3": "Is the % of successful Deployments > 90%?",
-            "q4": "Is TVT automated and triggered from deployment at least 90% ?",
-            "q5": "Is BVT automated and triggered from deployment at least 70% ?",
-            "q6": "Does the average deployment time for your platform exceed industry standards? "
+            "q1": "Is the frequency of Production deployments < 4 weeks?"
         }
     }
 }

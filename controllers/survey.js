@@ -14,7 +14,7 @@ exports.getSurveySummary = async (req, res, error = null) => {
     const userId = req.user.email;
     Assessment.find({ email: userId }, (err, assessmentData) => {
         if (err || !assessmentData.length) {
-            res.render('tribe', { pageTitle: 'Tribe', path: '/tribe', user: req.user.name, isAuthenticated: req.session.isLoggedIn, errorMessage: null });
+            res.render('tribe', { pageTitle: 'Tribe', path: '/tribe', user: req.user.name, isAuthenticated: req.session.isLoggedIn, data:{}, errorMessage: null });
         }
         else {
             const summary = prepareSurveySummary(assessmentData);
@@ -110,7 +110,7 @@ exports.getRequirements = (req, res, next) => {
             path: '/',
             user: req.session.username,
             questions: questions.requirements,
-            isUpdating: 'false',
+            isUpdating: false,
             errorMessage: null
         });
 
@@ -121,74 +121,144 @@ exports.getRequirements = (req, res, next) => {
 exports.postRequirements = async (req, res, next) => {
     console.log(`Inside postRequirements () `);
 
+    var update= req.body.isUpdating;
+    
     let reqFor = "";
 
-    try {
-        if (!req.session.assessmentId) throw new Error("AssessmentId not available in session");
-        const assessment = await Assessment.findOne({ _id: req.session.assessmentId }).exec();
-        if (!assessment) throw new Error("Insert Your Tribe Deatils First");
-        var answers = {};
-        answers.requirements = {};
+    if (!req.session.assessmentId) throw new Error("AssessmentId not available in session");
+    const assessment = await Assessment.findOne({ _id: req.session.assessmentId }).exec();
+    if (!assessment) throw new Error("Insert Your Tribe Deatils First");
 
-        answers.requirements.c1 = {};
-        answers.requirements.c2 = {};
-        answers.requirements.c3 = {};
-        
-        assessment.answered = 1;
-
-        delete req.body['_csrf'];
-        delete req.body['isUpdating'];
-
-        if (req.body.proceed) {
-            reqFor = "proceed";
-            delete req.body.proceed;
-        }
-        else if (req.body.save) {
-            reqFor = "save";
-            delete req.body.save;
-        }
-
-        var allQuestions = Object.keys(req.body);
-        allQuestions.forEach((questionName) => {
-            if (req.body[questionName]) {
-                var competency = questionName.slice(0, 2);
-                var question = questionName.slice(3, 9);
-                answers.requirements[competency][question] = req.body[questionName];
+    if(update === "true"){
+        try {
+            var requirements = {};
+    
+            requirements.c1 = {};
+            requirements.c2 = {};
+            requirements.c3 = {};
+            
+            assessment.answered = 4;
+    
+            delete req.body['_csrf'];
+            delete req.body['isUpdating'];
+    
+            if (req.body.proceed) {
+                reqFor = "proceed";
+                delete req.body.proceed;
             }
-        });
-
-        await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: 1, answers: answers, updated_at: utils.getCurrentDate() } }).exec();
-
-        console.log("Assesment Data Updated successfully");
-
-        if (reqFor === "proceed") {
-            console.log("Requesting for next section");
-            res.redirect('/survey/testing');
+            else if (req.body.save) {
+                reqFor = "save";
+                delete req.body.save;
+            }
+    
+            var allQuestions = Object.keys(req.body);
+            allQuestions.forEach((questionName) => {
+                if (req.body[questionName]) {
+                    var competency = questionName.slice(0, 2);
+                    var question = questionName.slice(3, 9);
+                    requirements[competency][question] = req.body[questionName];
+                }
+            });
+            assessment.answers.requirements = requirements;
+            
+            await Assessment.updateOne({ _id: assessment._id }, { $set: {answered: 4, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
+    
+            console.log("Assesment Data Updated successfully");
+    
+            if (reqFor === "proceed") {
+                console.log("Requesting for Pre-filled Testing section");
+                res.redirect('/survey/update-testing');
+            }
+            else if (reqFor === "save") {
+                console.log("Will be in same section");
+                req.flash('success', 'Data saved successfully');
+                res.render('requirements-questions', {
+                    pageTitle: 'Requirements',
+                    path: '/',
+                    user: req.session.username,
+                    showForm: req.body,
+                    isUpdating: true,
+                    questions: questions.requirements,
+                    errorMessage: null
+                });
+    
+            }
         }
-        else if (reqFor === "save") {
-            console.log("Will be in same section");
-            console.log(answers.requirements);
-            req.flash('success', 'Data saved successfully');
-            res.render('requirements-questions', {
-                pageTitle: 'Requirements',
+        catch (err) {
+            res.render('tribe', {
+                pageTitle: 'Tribe Details',
                 path: '/',
                 user: req.session.username,
-                showForm: req.body,
                 isUpdating: req.body.isUpdating,
-                questions: questions.requirements,
-                errorMessage: null
+                errorMessage: err.message ? err.message : JSON.stringify(err)
             });
-
         }
     }
-    catch (err) {
-        res.render('tribe', {
-            pageTitle: 'Tribe Details',
-            path: '/',
-            user: req.session.username,
-            isUpdating: req.body.isUpdating,
-            errorMessage: err.message ? err.message : JSON.stringify(err)
-        });
+    else{
+        try {
+            var answers = {};
+            answers.requirements = {};
+
+            answers.requirements.c1 = {};
+            answers.requirements.c2 = {};
+            answers.requirements.c3 = {};
+            
+            assessment.answered = 1;
+
+            delete req.body['_csrf'];
+            delete req.body['isUpdating'];
+
+            if (req.body.proceed) {
+                reqFor = "proceed";
+                delete req.body.proceed;
+            }
+            else if (req.body.save) {
+                reqFor = "save";
+                delete req.body.save;
+            }
+
+            var allQuestions = Object.keys(req.body);
+            allQuestions.forEach((questionName) => {
+                if (req.body[questionName]) {
+                    var competency = questionName.slice(0, 2);
+                    var question = questionName.slice(3, 9);
+                    answers.requirements[competency][question] = req.body[questionName];
+                }
+            });
+            
+            await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: assessment.answered, answers: answers, updated_at: utils.getCurrentDate() } }).exec();
+
+            console.log("Assesment Data Updated successfully");
+
+            if (reqFor === "proceed") {
+                console.log("Requesting for next section");
+                res.redirect('/survey/testing');
+            }
+            else if (reqFor === "save") {
+                console.log("Will be in same section");
+                console.log(answers.requirements);
+                req.flash('success', 'Data saved successfully');
+                res.render('requirements-questions', {
+                    pageTitle: 'Requirements',
+                    path: '/',
+                    user: req.session.username,
+                    showForm: req.body,
+                    isUpdating: req.body.isUpdating,
+                    questions: questions.requirements,
+                    errorMessage: null
+                });
+
+            }
+        }
+        catch (err) {
+            res.render('tribe', {
+                pageTitle: 'Tribe Details',
+                path: '/',
+                user: req.session.username,
+                isUpdating: req.body.isUpdating,
+                errorMessage: err.message ? err.message : JSON.stringify(err)
+            });
+        }
     }
 };
 
@@ -219,14 +289,15 @@ exports.getTesting = (req, res, next) => {
 
 exports.postTesting = async (req, res, next) => {
     console.log(`Inside postTesting () `);
-    console.log(req.body);
+    console.log(req.body.isUpdating);
+
+    var update = req.body.isUpdating;
 
     try {
 
         if (!req.session.assessmentId) throw new Error("AssessmentId not available in session");
         const assessment = await Assessment.findOne({ _id: req.session.assessmentId }).exec();
         if (!assessment) throw new Error("Insert Your Tribe Deatils First");
-
 
         let reqFor = "";
         var testing = {};
@@ -259,13 +330,10 @@ exports.postTesting = async (req, res, next) => {
             }
         });
         assessment.answers.testing = testing;
-        await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: 2, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
+        var availed = update==="true" ? 4 : 2;
+        await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: availed, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
 
-        if (reqFor === "proceed") {
-            console.log("Requesting for next section");
-            res.redirect('/survey/build');
-        }
-        else if (reqFor === "save") {
+        if (reqFor === "save") {
             console.log("Will be in same section");
             req.flash('success', 'Data saved successfully');
             res.render('testing-questions', {
@@ -273,11 +341,23 @@ exports.postTesting = async (req, res, next) => {
                 path: '/',
                 user: req.session.username,
                 showForm: req.body,
-                isUpdating: req.body.isUpdating,
+                isUpdating: update,
                 questions: questions.testing,
                 errorMessage: null
             });
         }
+
+        if (reqFor === "proceed") {
+            if(update==="true"){
+                console.log("Requesting for next section");
+                res.redirect('/survey/update-build');
+            }
+            else{
+                console.log("Requesting for next section");
+                res.redirect('/survey/build');
+            }            
+        }
+        
     }
     catch (err) {
         res.render('tribe', {
@@ -289,7 +369,6 @@ exports.postTesting = async (req, res, next) => {
         });
     }
 };
-
 
 exports.getBuild = (req, res, next) => {
     if(!req.session.assessmentId) {
@@ -318,7 +397,9 @@ exports.getBuild = (req, res, next) => {
 
 exports.postBuild = async (req, res, next) => {
     console.log(`Inside postBuild () `);
-    console.log(req.body);
+    console.log(req.body.isUpdating);
+
+    var update = req.body.isUpdating;
 
     try {
 
@@ -355,24 +436,37 @@ exports.postBuild = async (req, res, next) => {
         });
 
         assessment.answers.build = build;
-        await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: 3, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
+        var availed = update==="true" ? 4 : 3;
+        await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: availed, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
 
-        if (reqFor === "proceed") {
-            res.redirect('/survey/deploy');
-        }
-        else if (reqFor === "save") {
+        
+        if (reqFor === "save") {
             console.log("Will be in same section");
+            console.log(update);
             req.flash('success', 'Data saved successfully');
             res.render('build-questions', {
                 pageTitle: 'Build',
                 path: '/',
                 user: req.session.username,
                 showForm: req.body,
-                isUpdating: req.body.isUpdating,
+                isUpdating: update,
                 questions: questions.build,
                 errorMessage: null
             });
         }
+
+        if (reqFor === "proceed") {
+            if(update==="true"){
+                console.log("Requesting for next section");
+                res.redirect('/survey/update-deploy');
+            }
+            else{
+                console.log("Requesting for next section");
+                res.redirect('/survey/deploy');
+            }            
+        }
+        
+
     }
     catch (err) {
         res.render('tribe', {
@@ -413,6 +507,7 @@ exports.getDeploy = (req, res, next) => {
 exports.postDeploy = async (req, res, next) => {
     console.log(`Inside postDeploy () `);
     console.log(req.body);
+    var update = req.body.isUpdating;
 
     try {
         if (!req.session.assessmentId) throw new Error("AssessmentId not available in session");
@@ -446,10 +541,15 @@ exports.postDeploy = async (req, res, next) => {
             }
         });
         assessment.answers.deploy = deploy;
-        await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: 4, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
+        var availed = update==="true" ? 4 : 4;
+        await Assessment.updateOne({ _id: assessment._id }, { $set: { answered: availed, answers: assessment.answers, updated_at: utils.getCurrentDate() } }).exec();
 
         console.log(`Deploy answers updated successfully`);
+        
         if (reqFor === "proceed") {
+            if(update==="true"){
+                delete req.session.assessmentId;
+            }
             res.render('submit-survey', {
                 pageTitle: 'Thank you',
                 path: '/',
@@ -464,7 +564,7 @@ exports.postDeploy = async (req, res, next) => {
                 path: '/',
                 user: req.session.username,
                 showForm: req.body,
-                isUpdating: req.body.isUpdating,
+                isUpdating: update,
                 questions: questions.deploy,
                 errorMessage: null
             });
@@ -543,20 +643,25 @@ exports.postReviewSurvey = async (req, res, next) => {
 };
 
 exports.getUpdatedRequirements = async (req, res, next) => {
-    if(!req.body.assessmentId) {
+    let assessmentId = req.body.assessmentId;
+    var isUpdating = req.body.getFromSession==="true" ? false : true;
+    
+    if(req.body.getFromSession === "true") assessmentId = req.session.assessmentId;
+
+    if(!assessmentId) {
         res.render('tribe', {
             pageTitle: 'Tribe',
             comp: req.body.comp,
             path: '/',
             user: req.session.username,
-            isUpdating: 'false',
+            isUpdating: false,
             errorMessage: "Fill the Tribe details First"
           });
     }
     else{
-        const assessment = await Assessment.findOne({ _id: req.body.assessmentId }).exec();
+        const assessment = await Assessment.findOne({ _id:assessmentId }).exec();
         if (!assessment) throw new Error("Insert Your Tribe Deatils First");
-        req.session.assessmentId=req.body.assessmentId;
+        req.session.assessmentId = assessmentId;
 
         var answerSet = {};
 
@@ -574,28 +679,119 @@ exports.getUpdatedRequirements = async (req, res, next) => {
             path: '/',
             user: req.session.username,
             showForm: answerSet,
-            isUpdating: true,
+            isUpdating: isUpdating,
             questions: questions.requirements,
+            errorMessage: null
+        });
+    }
+};
+
+exports.getUpdatedTesting = async (req, res, next) => {
+    if(!req.session.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
+    else{
+        const assessment = await Assessment.findOne({ _id: req.session.assessmentId }).exec();
+        if (!assessment) throw new Error("Insert Your Tribe Deatils First");
+        var answerSet = {};
+        Object.keys(questions.testing).forEach(comp =>{
+            Object.keys(questions.testing[comp]).forEach(ques => {
+                if(assessment.answers.testing[comp][ques] !== "NA")
+                answerSet[comp+"_"+ques] = assessment.answers.testing[comp][ques];
+            })
+        })
+        res.render('testing-questions', {
+            pageTitle: 'Testing',
+            path: '/',
+            user: req.session.username,
+            showForm: answerSet,
+            isUpdating: true,
+            questions: questions.testing,
+            errorMessage: null
+        });
+    }
+};
+
+exports.getUpdatedBuild = async (req, res, next) => {
+    if(!req.session.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
+    else{
+        const assessment = await Assessment.findOne({ _id: req.session.assessmentId }).exec();
+        if (!assessment) throw new Error("Insert Your Tribe Deatils First");
+        var answerSet = {};
+        Object.keys(questions.build).forEach(comp =>{
+            Object.keys(questions.build[comp]).forEach(ques => {
+                if(assessment.answers.build[comp][ques] !== "NA")
+                answerSet[comp+"_"+ques] = assessment.answers.build[comp][ques];
+            })
+        })
+        res.render('build-questions', {
+            pageTitle: 'Build',
+            path: '/',
+            user: req.session.username,
+            showForm: answerSet,
+            isUpdating: true,
+            questions: questions.build,
+            errorMessage: null
+        });
+    }
+};
+
+exports.getUpdatedDeploy = async (req, res, next) => {
+    if(!req.session.assessmentId) {
+        res.render('tribe', {
+            pageTitle: 'Tribe',
+            comp: req.body.comp,
+            path: '/',
+            user: req.session.username,
+            isUpdating: 'false',
+            errorMessage: "Fill the Tribe details First"
+          });
+    }
+    else{
+        const assessment = await Assessment.findOne({ _id: req.session.assessmentId }).exec();
+        if (!assessment) throw new Error("Insert Your Tribe Deatils First");
+
+        var answerSet = {};
+        Object.keys(questions.deploy).forEach(comp =>{
+            Object.keys(questions.deploy[comp]).forEach(ques => {
+                if(assessment.answers.deploy[comp][ques] !== "NA")
+                answerSet[comp+"_"+ques] = assessment.answers.deploy[comp][ques];
+            })
+        })
+
+        res.render('deploy-questions', {
+            pageTitle: 'Deploy',
+            path: '/',
+            user: req.session.username,
+            showForm: answerSet,
+            isUpdating: true,
+            questions: questions.deploy,
             errorMessage: null
         });
 
     }
-
-};
-
-exports.getUpdatedTesting = async (req, res, next) => {
-};
-
-exports.getUpdatedBuild = async (req, res, next) => {
-};
-
-exports.getUpdatedDeploy = async (req, res, next) => {
 };
 
 exports.getResult = async (req, res, next) => {
     try {
-        if (!req.session.assessmentId) throw new Error("AssessmentId not available in session");
-        const assessment = await Assessment.findOne({ _id: req.session.assessmentId }).exec();
+        if (!req.body.assessmentId) throw new Error("AssessmentId not available in session");
+        const assessment = await Assessment.findOne({ _id: req.body.assessmentId }).exec();
         if (!assessment) throw new Error("Insert Your Tribe Deatils First");
 
         if (assessment.answered === 4) {

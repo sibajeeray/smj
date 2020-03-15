@@ -45,10 +45,10 @@ router.post('/update-survey', surveyController.updateSurvey);
 
 router.post('/update-requirements', surveyController.getUpdatedRequirements);
 
-router.post('/update-testing', surveyController.getUpdatedTesting);
+router.get('/update-testing', surveyController.getUpdatedTesting);
 
-router.post('/update-build', surveyController.getUpdatedBuild);
+router.get('/update-build', surveyController.getUpdatedBuild);
 
-router.post('/update-deploy', surveyController.getUpdatedDeploy);
+router.get('/update-deploy', surveyController.getUpdatedDeploy);
 
 module.exports= router;

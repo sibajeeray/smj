@@ -2,7 +2,7 @@ const Assessment = require('../models/assessment');
 const { validationResult } = require('express-validator/check');
 
 exports.getTribe = (req, res, next) => {
-  res.render('tribe', { pageTitle: 'Tribe', path: '/', user: req.session.username, errorMessage: null });
+  res.render('tribe', { pageTitle: 'Tribe', path: '/', user: req.session.username, errorMessage: null, data:{}});
 };
 
 
@@ -80,4 +80,29 @@ exports.postAdminTribe = (req, res, next) => {
 exports.getAdminTribeResult = (req, res, next) => {
   res.render('tribe-result', { pageTitle: 'Tribe', path: '/', user: req.session.email });
 };
+
+exports.getUpdatedTribe = (req, res, next) => {
+  console.log(req.body.assessmentId);
+
+  Assessment.findOne({ _id: req.body.assessmentId }, (err, assessmentData) => {
+    
+    const { answers, ...data } = assessmentData._doc;
+    console.log(data);
+
+    res.render('tribe', {
+      pageTitle: 'Tribe',
+      comp: req.body.comp,
+      path: '/',
+      data: data,
+      user: req.session.username,
+      isUpdating: 'false',
+      errorMessage: null
+    });
+    
+  }
+  
+  
+
+  )};
+
 

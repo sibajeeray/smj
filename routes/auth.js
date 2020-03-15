@@ -8,12 +8,6 @@ const authController = require('../controllers/authentication');
 
 const router = express.Router();
 
-router.get('/login', authController.getLogin);
-
-router.post('/admin-validation', authController.postAdminLogin);
-
-router.get('/sign-up-in',authController.getSignup);
-
 router.post(
   '/register',
   [
@@ -48,7 +42,11 @@ router.post(
   authController.postSignup
 );
 
-// router.post('/login_validation', authController.postLogin);
+router.get('/login', authController.getLogin);
+
+router.post('/admin-validation', authController.postAdminLogin);
+
+router.get('/sign-up-in',authController.getSignup);
 
 router.post(
   '/login_validation',

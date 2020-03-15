@@ -25,20 +25,24 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <select name="businessname" id="bname" required>
-                                        <option value=""></option>
-                                        <option value="Australia Retail And Commercial">Australia Retail And Commercial</option>
-                                        <option value="Banking Services">Banking Services</option>
-                                        <option value="Business Automation And Integration">Business Automation And Integration</option>
-                                        <option value="Customer Operations">Customer Operations</option>
-                                        <option value="Data Services">Data Services</option>
-                                        <option value="Employee Experience">Employee Experience</option>
-                                        <option value="Infrastructure As A Service">Infrastructure As A Service</option>
-                                        <option value="Institutional">Institutional</option>
-                                        <option value="New Zealand">New Zealand</option>
-                                        <option value="Security">Security</option>
-                                        <option value="Technology Business Management">Technology Business Management</option>
-                                        <option value="Technology Transformation">Technology Transformation</option>
-                                        <option value="Wealth">Wealth</option>
+                                        <% if (locals.data && data.businessname) {  %>
+                                            <option value="<%- data.businessname%>" selected><%- data.businessname%></option>  
+                                        <% } else { %>
+                                            <option value=""></option>
+                                            <option value="Australia Retail And Commercial" >Australia Retail And Commercial</option>
+                                            <option value="Banking Services">Banking Services</option>
+                                            <option value="Business Automation And Integration">Business Automation And Integration</option>
+                                            <option value="Customer Operations">Customer Operations</option>
+                                            <option value="Data Services">Data Services</option>
+                                            <option value="Employee Experience">Employee Experience</option>
+                                            <option value="Infrastructure As A Service">Infrastructure As A Service</option>
+                                            <option value="Institutional">Institutional</option>
+                                            <option value="New Zealand">New Zealand</option>
+                                            <option value="Security">Security</option>
+                                            <option value="Technology Business Management">Technology Business Management</option>
+                                            <option value="Technology Transformation">Technology Transformation</option>
+                                            <option value="Wealth">Wealth</option>
+                                       <% } %>
                                     </select>
                                 </div>
                             </div>
@@ -49,6 +53,9 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <select name="tribename" id="tname" required>
+                                        <% if (locals.data && data.tribename) {  %>
+                                            <option value="<%- data.tribename%>" selected><%- data.tribename%></option>  
+                                        <% } else { %>
                                         <option value=""></option>
                                         <option value="Assurance COE">Assurance COE</option>
                                         <option value="Assurance Compliance And Security">Assurance Compliance And Security</option>
@@ -143,6 +150,7 @@
                                         <option value="Wholesale Group Risk">Wholesale Group Risk</option>
                                         <option value="Workflow And Automation">Workflow And Automation</option>
                                         <option value="Workplace">Workplace</option>
+                                        <% } %>
                                     </select>
                                 </div>
                             </div>
@@ -152,7 +160,11 @@
                                     <label for="">3. Squad/s under assessment *</label>
                                 </div>
                                 <div class="col-sm-6">
+                                    <% if (locals.data && data.squadname) {  %>
+                                        <input type= "text" name="squadname" id="sname" value="<%- data.squadname%>">  
+                                    <% } else { %>
                                     <input type="text" name="squadname" id="sname" required>
+                                    <% } %>
                                 </div>
                             </div>
 
@@ -180,7 +192,11 @@
                                     <label for="">6. TAL/Domain Lead name *</label>
                                 </div>
                                 <div class="col-sm-6">
+                                    <% if (locals.data && data.talname) {  %>
+                                        <input type= "text" name="talname" id="talname" required value="<%- data.talname%>">  
+                                    <% } else { %>
                                     <input type="text" name="talname" id="talname" required>
+                                    <% } %>
                                 </div>
                             </div>
 
@@ -189,7 +205,11 @@
                                     <label for="">7. TPL/ Portfolio Lead name *</label>
                                 </div>
                                 <div class="col-sm-6">
+                                    <% if (locals.data && data.tplname) {  %>
+                                        <input type= "text" name="tplname" id="tplname" required value="<%- data.tplname%>">  
+                                    <% } else { %>
                                     <input type="text" name="tplname" id="tplname" required>
+                                    <% } %>
                                 </div>
                             </div>
 

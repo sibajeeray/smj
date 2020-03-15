@@ -49,4 +49,6 @@ router.post('/tribe-result', tribeController.postAdminTribe);
 
 router.get('/tribe-result1', tribeController.getAdminTribeResult);
 
+router.post('/update-tribe', tribeController.getUpdatedTribe);
+
 module.exports = router;
