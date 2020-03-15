@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+
 const crypto = require('crypto');
 const { validationResult } = require('express-validator/check');
 const config = require('../config/global/config.json');
