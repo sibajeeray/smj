@@ -28,7 +28,7 @@
 
                         <form style="padding-bottom: 30px;" id="form1" action="/survey/requirements" method="post">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                            <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
+                            <% if(locals.isUpdating && isUpdating ) { %><input type="hidden" name="isUpdating" value="true"> <%} %>
                         </form>
 
                     </div>
@@ -44,9 +44,9 @@
     retriveQuestions(questions);
 </script>
 
-<% if(locals.showForm) { %>
+<% if(locals.answers) { %>
     <script>
-        var answers =  JSON.parse('<%- JSON.stringify(showForm) %>');   
-        fillTheForm(answers);
+        var answerSet =  JSON.parse('<%- JSON.stringify(answers) %>');   
+        fillTheForm(answerSet);
     </script>
 <% }%>

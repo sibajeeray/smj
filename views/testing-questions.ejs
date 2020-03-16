@@ -19,6 +19,7 @@
                 <form method="POST" action="/survey/update-requirements">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <input type="hidden" name="getFromSession" value="true" >
+                    <% if(isUpdating === "false" || !isUpdating) { %><input type="hidden" name="action" value="back" ><%}%>
                     <input type="submit" value="Back">
                 </form>
                 <div class="guide text-center">
@@ -29,11 +30,9 @@
                     <div class="col-md-4 image">
 
                     </div>
-
                     <div class="col-md-8 questionsbox">
-
-
-                        <form style="padding-bottom: 30px;" id="form1" action = <% if (isUpdating) { %>"/survey/testing" <% }  else { %> "/survey/update-testing" <% } %> method="post">
+                        
+                        <form style="padding-bottom: 30px;" id="form1" action = "/survey/testing" method="post">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
                         </form>
@@ -51,10 +50,9 @@
         retriveQuestions(questions);
     </script>
 
-    <% if(locals.showForm) { %>
+<% if(locals.answers) { %>
     <script>
-        var answers = JSON.parse('<%- JSON.stringify(showForm) %>');
-        fillTheForm(answers);
+        var answerSet =  JSON.parse('<%- JSON.stringify(answers) %>');   
+        fillTheForm(answerSet);
     </script>
-
-    <% }%>
+<% }%>

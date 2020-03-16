@@ -15,8 +15,7 @@
                 <h6 class="welcome">
                     Section 4. Deploy
                 </h6>
-                <form method="get" action="/survey/update-build">
-                    <input type="hidden" name="isback" value="true" />
+                <form method="get" action="/survey/update-build<%if(isUpdating === 'false' || !isUpdating) { %>/back<%}%>">
                     <input type="submit" value="Back">
                 </form>
                 <div class="guide text-center">
@@ -48,10 +47,9 @@
         retriveQuestions(questions);
     </script>
 
-    <% if(locals.showForm) { %>
+<% if(locals.answers) { %>
     <script>
-        var answers = JSON.parse('<%- JSON.stringify(showForm) %>');
-        fillTheForm(answers);
+        var answerSet =  JSON.parse('<%- JSON.stringify(answers) %>');   
+        fillTheForm(answerSet);
     </script>
-
-    <% }%>
+<% }%>

@@ -16,8 +16,7 @@
                 <h6 class="welcome">
                     Section 3. Build
                 </h6>
-                <form method="get" action="/survey/update-testing">
-                    <input type="hidden" name="isback" value="true" />
+                <form method="get" action="/survey/update-testing<% if(isUpdating === 'false' || !isUpdating ) { %>/back<% }else {!isUpdating} %>">
                     <input type="submit" value="Back">
                 </form>
 
@@ -33,7 +32,7 @@
                     <div class="col-md-8 questionsbox">
 
 
-                        <form style="padding-bottom: 30px;" id="form1" action=<% if (isUpdating) { %>"/survey/build" <% }  else { %> "/survey/update-build" <% } %> method="post">
+                        <form style="padding-bottom: 30px;" id="form1" action="/survey/build" method="post">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <input type="hidden" name="isUpdating" value="<%= isUpdating %>">
                         </form>
@@ -51,10 +50,9 @@
         retriveQuestions(questions);
     </script>
 
-    <% if(locals.showForm) { %>
+<% if(locals.answers) { %>
     <script>
-        var answers = JSON.parse('<%- JSON.stringify(showForm) %>');
-        fillTheForm(answers);
+        var answerSet =  JSON.parse('<%- JSON.stringify(answers) %>');   
+        fillTheForm(answerSet);
     </script>
-
-    <% }%>
+<% }%>
