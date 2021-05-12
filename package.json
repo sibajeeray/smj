@@ -25,7 +25,7 @@
     "mongoose-dynamic-schemas": "^1.2.6",
     "node-mailjet": "^3.3.1",
     "nodejs-nodemailer-outlook": "^1.2.1",
-    "nodemailer": "^6.3.1",
+    "nodemailer": "^6.4.16",
     "nodemon": "^1.19.2",
     "path": "^0.12.7",
     "plotly": "^1.0.6",
